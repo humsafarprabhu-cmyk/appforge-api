@@ -380,6 +380,18 @@ app.post('/api/generate', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Missing required fields' });
     }
 
+    // Rate limit for unauthenticated users (skip for onboarding — it's cheap)
+    if (mode !== 'onboarding') {
+      const ip = (req.headers['x-forwarded-for'] as string || req.socket.remoteAddress || '').split(',')[0].trim();
+      if (!trackUsage(ip)) {
+        return res.status(429).json({ 
+          success: false, 
+          message: 'Daily free limit reached (5 apps/day). Sign up for more!',
+          usage: getUsage(ip),
+        });
+      }
+    }
+
     // ─── ONBOARDING (synchronous, fast) ────────────────────────────
     if (mode === 'onboarding') {
       let jsonStr = await aiChat(ONBOARDING_PROMPT, `App idea: ${prompt}`, 1500);
@@ -586,6 +598,39 @@ app.post('/api/export/react-native', async (req, res) => {
     console.error('[RN Export]', err);
     res.status(500).json({ success: false, message: err.message });
   }
+});
+
+// ─── USAGE TRACKING & RATE LIMITING ─────────────────────────────────────────
+const usageTracker = new Map<string, { count: number; resetAt: number }>();
+const DAILY_FREE_LIMIT = 5; // generations per day for unauthenticated users
+
+function getUsage(ip: string): { count: number; remaining: number; resetAt: number } {
+  const now = Date.now();
+  let entry = usageTracker.get(ip);
+  if (!entry || now > entry.resetAt) {
+    entry = { count: 0, resetAt: now + 24 * 60 * 60 * 1000 };
+    usageTracker.set(ip, entry);
+  }
+  return { count: entry.count, remaining: Math.max(0, DAILY_FREE_LIMIT - entry.count), resetAt: entry.resetAt };
+}
+
+function trackUsage(ip: string): boolean {
+  const usage = getUsage(ip);
+  if (usage.remaining <= 0) return false;
+  usageTracker.get(ip)!.count++;
+  return true;
+}
+
+// Usage endpoint
+app.get('/api/usage', (req, res) => {
+  const ip = (req.headers['x-forwarded-for'] as string || req.socket.remoteAddress || '').split(',')[0].trim();
+  const usage = getUsage(ip);
+  res.json({ ...usage, limit: DAILY_FREE_LIMIT });
+});
+
+// Health check
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', version: '4.0', uptime: process.uptime() });
 });
 
 // ─── START ───────────────────────────────────────────────────────────────────

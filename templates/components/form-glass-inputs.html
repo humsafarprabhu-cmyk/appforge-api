@@ -3,15 +3,15 @@
     <div class="space-y-4">
         <div>
             <label class="text-xs font-medium text-muted mb-1.5 block">{{field1Label}}</label>
-            <input type="text" placeholder="{{field1Placeholder}}" value="{{field1Value}}" class="glass-input w-full py-3 px-4 text-sm" aria-label="{{field1Label}}">
+            <input type="text" name="{{field1Name}}" placeholder="{{field1Placeholder}}" value="{{field1Value}}" class="glass-input w-full py-3 px-4 text-sm" aria-label="{{field1Label}}" required>
         </div>
         <div>
             <label class="text-xs font-medium text-muted mb-1.5 block">{{field2Label}}</label>
-            <input type="text" placeholder="{{field2Placeholder}}" value="{{field2Value}}" class="glass-input w-full py-3 px-4 text-sm" aria-label="{{field2Label}}">
+            <input type="text" name="{{field2Name}}" placeholder="{{field2Placeholder}}" value="{{field2Value}}" class="glass-input w-full py-3 px-4 text-sm" aria-label="{{field2Label}}">
         </div>
         <div>
             <label class="text-xs font-medium text-muted mb-1.5 block">{{field3Label}}</label>
-            <textarea placeholder="{{field3Placeholder}}" class="glass-input w-full py-3 px-4 text-sm resize-none h-24" aria-label="{{field3Label}}">{{field3Value}}</textarea>
+            <textarea name="{{field3Name}}" placeholder="{{field3Placeholder}}" class="glass-input w-full py-3 px-4 text-sm resize-none h-24" aria-label="{{field3Label}}">{{field3Value}}</textarea>
         </div>
         <div>
             <label class="text-xs font-medium text-muted mb-1.5 block">{{field4Label}}</label>
@@ -33,5 +33,5 @@
             </div>
         </div>
     </div>
-    <button class="w-full py-3.5 rounded-2xl gp text-sm font-bold touch-btn shadow-lg mt-6" style="box-shadow:0 4px 20px rgba(99,102,241,0.3)">{{submitLabel}}</button>
+    <button type="submit" class="w-full py-3.5 rounded-2xl gp text-sm font-bold touch-btn shadow-lg mt-6" style="box-shadow:0 4px 20px rgba(99,102,241,0.3)">{{submitLabel}}</button>
 </div>

@@ -1,0 +1,78 @@
+<!-- Profile: Avatar + Stats + Settings -->
+<div class="anim-1 text-center mt-4">
+    <div class="relative inline-block">
+        <div class="w-24 h-24 rounded-full p-[3px] mx-auto" style="background:linear-gradient(135deg, {{primary1}}, {{primary2}}, {{accent1a}})">
+            <div class="w-full h-full rounded-full bg-[#050507] flex items-center justify-center">
+                <span class="text-2xl font-bold">{{userInitials}}</span>
+            </div>
+        </div>
+        <div class="absolute bottom-0 right-0 w-7 h-7 rounded-full gp flex items-center justify-center border-2 border-[#050507]">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+    </div>
+    <h2 class="text-xl font-bold mt-3">{{userName}}</h2>
+    <p class="text-sm text-muted">{{userEmail}}</p>
+</div>
+
+<!-- Profile Stats -->
+<div class="grid grid-cols-3 gap-3 mt-5 anim-2">
+    <div class="glass-sm p-3 text-center">
+        <p class="text-lg font-extrabold">{{profileStat1Value}}</p>
+        <p class="text-[10px] text-muted">{{profileStat1Label}}</p>
+    </div>
+    <div class="glass-sm p-3 text-center">
+        <p class="text-lg font-extrabold">{{profileStat2Value}}</p>
+        <p class="text-[10px] text-muted">{{profileStat2Label}}</p>
+    </div>
+    <div class="glass-sm p-3 text-center">
+        <p class="text-lg font-extrabold">{{profileStat3Value}}</p>
+        <p class="text-[10px] text-muted">{{profileStat3Label}}</p>
+    </div>
+</div>
+
+<!-- Settings List -->
+<div class="mt-5 space-y-1 anim-3">
+    <div class="glass-sm p-4 flex items-center justify-between touch-btn rounded-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <span class="text-sm font-medium">{{setting1}}</span>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="glass-sm p-4 flex items-center justify-between touch-btn rounded-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <span class="text-sm font-medium">{{setting2}}</span>
+        </div>
+        <div class="w-11 h-6 rounded-full gp relative">
+            <div class="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 shadow"></div>
+        </div>
+    </div>
+    <div class="glass-sm p-4 flex items-center justify-between touch-btn rounded-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="text-sm font-medium">{{setting3}}</span>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="glass-sm p-4 flex items-center justify-between touch-btn rounded-2xl">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl glass flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <span class="text-sm font-medium">{{setting4}}</span>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+</div>
+
+<!-- Logout -->
+<div class="mt-4 anim-4">
+    <button class="w-full py-3 rounded-2xl text-sm font-medium touch-btn" style="background:rgba(244,63,94,0.1);color:#fb7185;border:1px solid rgba(244,63,94,0.2)">Sign Out</button>
+</div>

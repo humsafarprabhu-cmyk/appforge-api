@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{appName}} - {{screenName}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: #050507; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; min-height: 100vh; }
+        .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+        .glass-sm { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; }
+        .glass-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; color: white; outline: none; transition: border-color 0.2s; }
+        .glass-input:focus { border-color: {{primary1}}; }
+        .glass-input::placeholder { color: rgba(255,255,255,0.3); }
+        .gp { background: linear-gradient(135deg, {{primary1}}, {{primary2}}); }
+        .ga1 { background: linear-gradient(135deg, {{accent1a}}, {{accent1b}}); }
+        .ga2 { background: linear-gradient(135deg, {{accent2a}}, {{accent2b}}); }
+        .ga3 { background: linear-gradient(135deg, {{accent3a}}, {{accent3b}}); }
+        .text-muted { color: rgba(255,255,255,0.5); }
+        .text-dimmed { color: rgba(255,255,255,0.3); }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+        .anim-1 { animation: fadeInUp 0.5s ease both; }
+        .anim-2 { animation: fadeInUp 0.5s ease 0.08s both; }
+        .anim-3 { animation: fadeInUp 0.5s ease 0.16s both; }
+        .anim-4 { animation: fadeInUp 0.5s ease 0.24s both; }
+        .anim-5 { animation: fadeInUp 0.5s ease 0.32s both; }
+        .anim-6 { animation: fadeInUp 0.5s ease 0.4s both; }
+        .touch-btn { transition: transform 0.1s; }
+        .touch-btn:active { transform: scale(0.96); }
+        .ring-progress { transform: rotate(-90deg); transform-origin: center; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="pb-24">
+{{STATUS_BAR}}
+<div class="pt-14 px-5">
+{{CONTENT}}
+</div>
+{{BOTTOM_NAV}}
+</body>
+</html>

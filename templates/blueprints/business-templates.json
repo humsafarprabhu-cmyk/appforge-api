@@ -1,0 +1,165 @@
+{
+  "restaurant": {
+    "name": "Restaurant / Food Ordering",
+    "description": "Complete restaurant app with menu browsing, cart, payment, and order notifications",
+    "screens": [
+      {
+        "name": "Menu",
+        "type": "restaurant-menu",
+        "description": "Browse food categories and items with images, prices, dietary tags"
+      },
+      {
+        "name": "Item Detail",
+        "type": "restaurant-item",
+        "description": "Food item with customization options (size, toppings, special instructions)"
+      },
+      {
+        "name": "Cart",
+        "type": "restaurant-cart",
+        "description": "Order summary with items, quantities, subtotal, delivery fee, total"
+      },
+      {
+        "name": "Checkout",
+        "type": "restaurant-checkout",
+        "description": "Delivery address, payment method, tip, place order button"
+      },
+      {
+        "name": "Order Tracking",
+        "type": "restaurant-tracking",
+        "description": "Order status timeline (confirmed → preparing → on the way → delivered), ETA, driver info"
+      }
+    ],
+    "dataModel": {
+      "collections": [
+        { "name": "menu_categories", "fields": ["id", "name", "icon", "sort_order"] },
+        { "name": "menu_items", "fields": ["id", "category_id", "name", "description", "price", "image_url", "dietary_tags", "available"] },
+        { "name": "orders", "fields": ["id", "user_id", "items", "subtotal", "delivery_fee", "tip", "total", "status", "delivery_address", "created_at"] },
+        { "name": "users", "fields": ["id", "name", "email", "phone", "addresses", "payment_methods"] }
+      ]
+    },
+    "features": ["cart", "payments", "push_notifications", "real_time_tracking"]
+  },
+  "appointment": {
+    "name": "Appointment Booking",
+    "description": "Service-based booking with provider selection, time slots, and confirmation",
+    "screens": [
+      {
+        "name": "Services",
+        "type": "booking-services",
+        "description": "Browse available services with duration, price, description, provider photos"
+      },
+      {
+        "name": "Provider",
+        "type": "booking-provider",
+        "description": "Provider profile with bio, ratings, reviews, available dates"
+      },
+      {
+        "name": "Time Slots",
+        "type": "booking-slots",
+        "description": "Calendar date picker + available time slots grid, selected service summary"
+      },
+      {
+        "name": "Confirmation",
+        "type": "booking-confirm",
+        "description": "Booking summary, add notes, payment, confirm button"
+      },
+      {
+        "name": "My Bookings",
+        "type": "booking-list",
+        "description": "Upcoming and past appointments with status, reschedule/cancel options"
+      }
+    ],
+    "dataModel": {
+      "collections": [
+        { "name": "services", "fields": ["id", "name", "description", "duration_min", "price", "category", "image_url"] },
+        { "name": "providers", "fields": ["id", "name", "bio", "avatar", "rating", "review_count", "specialties"] },
+        { "name": "time_slots", "fields": ["id", "provider_id", "date", "start_time", "end_time", "available"] },
+        { "name": "bookings", "fields": ["id", "user_id", "service_id", "provider_id", "date", "time", "status", "notes", "created_at"] },
+        { "name": "reviews", "fields": ["id", "booking_id", "user_id", "provider_id", "rating", "comment", "created_at"] }
+      ]
+    },
+    "features": ["calendar", "payments", "push_notifications", "reviews"]
+  },
+  "store": {
+    "name": "Product Catalog / Store",
+    "description": "E-commerce app with product browsing, cart, checkout, and order tracking",
+    "screens": [
+      {
+        "name": "Shop",
+        "type": "store-home",
+        "description": "Featured products, categories, search bar, promotional banners"
+      },
+      {
+        "name": "Product Detail",
+        "type": "store-product",
+        "description": "Product images, description, variants (size/color), reviews, add to cart"
+      },
+      {
+        "name": "Cart",
+        "type": "store-cart",
+        "description": "Cart items with quantity controls, promo code input, price breakdown, checkout button"
+      },
+      {
+        "name": "Checkout",
+        "type": "store-checkout",
+        "description": "Shipping address, shipping method, payment, order summary, place order"
+      },
+      {
+        "name": "Orders",
+        "type": "store-orders",
+        "description": "Order history with status badges, tracking info, reorder button"
+      }
+    ],
+    "dataModel": {
+      "collections": [
+        { "name": "products", "fields": ["id", "name", "description", "price", "compare_price", "images", "category", "variants", "stock", "rating"] },
+        { "name": "categories", "fields": ["id", "name", "icon", "sort_order"] },
+        { "name": "orders", "fields": ["id", "user_id", "items", "subtotal", "shipping", "tax", "total", "status", "tracking_number", "created_at"] },
+        { "name": "cart", "fields": ["id", "user_id", "items", "updated_at"] },
+        { "name": "reviews", "fields": ["id", "product_id", "user_id", "rating", "comment", "created_at"] }
+      ]
+    },
+    "features": ["cart", "payments", "push_notifications", "search", "reviews"]
+  },
+  "service": {
+    "name": "Service Listing",
+    "description": "Service marketplace with listings, pricing, booking, and reviews",
+    "screens": [
+      {
+        "name": "Browse",
+        "type": "service-browse",
+        "description": "Service categories, featured providers, search with filters (location, rating, price)"
+      },
+      {
+        "name": "Service Detail",
+        "type": "service-detail",
+        "description": "Service description, pricing tiers, provider info, portfolio/gallery, reviews"
+      },
+      {
+        "name": "Pricing",
+        "type": "service-pricing",
+        "description": "Pricing packages (Basic/Standard/Premium), what's included, compare features"
+      },
+      {
+        "name": "Contact & Book",
+        "type": "service-book",
+        "description": "Contact form, select package, schedule date, special requirements, book now"
+      },
+      {
+        "name": "Reviews",
+        "type": "service-reviews",
+        "description": "Rating breakdown, review list with photos, write review, sort/filter"
+      }
+    ],
+    "dataModel": {
+      "collections": [
+        { "name": "services", "fields": ["id", "provider_id", "title", "description", "category", "location", "images", "rating", "review_count"] },
+        { "name": "pricing_tiers", "fields": ["id", "service_id", "name", "price", "features", "popular"] },
+        { "name": "providers", "fields": ["id", "name", "bio", "avatar", "rating", "portfolio", "verified"] },
+        { "name": "bookings", "fields": ["id", "user_id", "service_id", "tier_id", "date", "requirements", "status", "created_at"] },
+        { "name": "reviews", "fields": ["id", "service_id", "user_id", "rating", "comment", "photos", "created_at"] }
+      ]
+    },
+    "features": ["search", "reviews", "payments", "push_notifications", "messaging"]
+  }
+}

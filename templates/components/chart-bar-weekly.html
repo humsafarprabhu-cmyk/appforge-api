@@ -1,0 +1,37 @@
+<!-- Chart: Weekly Bar Chart -->
+<div class="glass mt-4 p-5 anim-3">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-base font-semibold">{{chartTitle}}</h2>
+        <button class="text-xs text-muted px-2.5 py-1 glass-sm touch-btn">{{chartPeriod}}</button>
+    </div>
+    <div class="flex items-end justify-between gap-2 h-28">
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp opacity-40" style="height:{{bar1}}%"></div>
+            <span class="text-[10px] text-dimmed">Mon</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp opacity-60" style="height:{{bar2}}%"></div>
+            <span class="text-[10px] text-dimmed">Tue</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp opacity-80" style="height:{{bar3}}%"></div>
+            <span class="text-[10px] text-dimmed">Wed</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp" style="height:{{bar4}}%"></div>
+            <span class="text-[10px] text-dimmed">Thu</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp" style="height:{{bar5}}%"></div>
+            <span class="text-[10px] text-white font-medium">Fri</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg gp opacity-70" style="height:{{bar6}}%"></div>
+            <span class="text-[10px] text-dimmed">Sat</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-1">
+            <div class="w-full rounded-lg" style="height:{{bar7}}%;background:rgba(255,255,255,0.08)"></div>
+            <span class="text-[10px] text-dimmed">Sun</span>
+        </div>
+    </div>
+</div>

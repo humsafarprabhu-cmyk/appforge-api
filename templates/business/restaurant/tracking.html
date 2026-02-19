@@ -1,0 +1,159 @@
+<!-- Order Tracking Screen -->
+<div style="min-height:100vh;background:#050507;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;color:#fff;overflow-x:hidden">
+  <!-- Status Bar -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px 0;font-size:12px;font-weight:600">
+    <span>9:41</span>
+    <div style="display:flex;gap:4px;align-items:center">
+      <svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="6" width="3" height="6" rx="1" fill="#fff"/><rect x="4.5" y="4" width="3" height="8" rx="1" fill="#fff"/><rect x="9" y="1.5" width="3" height="10.5" rx="1" fill="#fff"/><rect x="13" y="0" width="3" height="12" rx="1" fill="#fff"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2" stroke="#fff" stroke-width="1" fill="none"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/></svg>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div style="padding:16px 20px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div>
+        <p style="font-size:18px;font-weight:700;margin:0">Order #{{orderNumber}}</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.4);margin:2px 0 0">Estimated delivery: {{estimatedTime}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Placeholder -->
+  <div style="margin:0 20px;height:180px;border-radius:20px;background:linear-gradient(135deg,#1a1a2e,#16213e);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.06)">
+    <div style="position:absolute;inset:0;opacity:0.1;background-image:radial-gradient(circle,rgba(255,255,255,0.3) 1px,transparent 1px);background-size:20px 20px"></div>
+    <!-- Route line -->
+    <svg width="100%" height="100%" style="position:absolute;inset:0" viewBox="0 0 300 180">
+      <path d="M40,140 Q80,60 150,90 T260,50" stroke="{{primary1}}" stroke-width="3" fill="none" stroke-dasharray="8,4" opacity="0.6"/>
+      <circle cx="40" cy="140" r="8" fill="{{primary1}}"/>
+      <circle cx="40" cy="140" r="4" fill="#fff"/>
+      <circle cx="260" cy="50" r="8" fill="#22c55e"/>
+      <circle cx="260" cy="50" r="4" fill="#fff"/>
+      <!-- Driver -->
+      <circle cx="150" cy="90" r="14" fill="{{primary1}}" stroke="#fff" stroke-width="2"/>
+      <text x="150" y="95" text-anchor="middle" fill="#fff" font-size="12">🛵</text>
+    </svg>
+    <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);border-radius:10px;padding:6px 10px;font-size:11px;color:rgba(255,255,255,0.8)">📍 {{driverLocation}}</div>
+  </div>
+
+  <!-- ETA Card -->
+  <div style="margin:16px 20px;background:linear-gradient(135deg,{{primary1}},{{primary2}});border-radius:20px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.7);margin:0">Arriving in</p>
+      <p style="font-size:28px;font-weight:800;margin:2px 0 0">{{etaMinutes}} min</p>
+    </div>
+    <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+  </div>
+
+  <!-- Status Timeline -->
+  <div style="padding:0 20px;margin-bottom:20px">
+    <p style="font-size:16px;font-weight:600;margin:0 0 16px">Order Status</p>
+    
+    <!-- Step 1: Confirmed ✅ -->
+    <div style="display:flex;gap:14px;margin-bottom:0">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div style="width:2px;height:32px;background:#22c55e"></div>
+      </div>
+      <div style="padding-top:4px">
+        <p style="font-size:14px;font-weight:600;margin:0">Order Confirmed</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);margin:2px 0 0">{{step1Time}}</p>
+      </div>
+    </div>
+
+    <!-- Step 2: Preparing ✅ -->
+    <div style="display:flex;gap:14px;margin-bottom:0">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div style="width:2px;height:32px;background:#22c55e"></div>
+      </div>
+      <div style="padding-top:4px">
+        <p style="font-size:14px;font-weight:600;margin:0">Preparing Your Order</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);margin:2px 0 0">{{step2Time}}</p>
+      </div>
+    </div>
+
+    <!-- Step 3: On the way 🔵 (Active) -->
+    <div style="display:flex;gap:14px;margin-bottom:0">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:{{primary1}};display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px {{primary1}}20">
+          <div style="width:10px;height:10px;border-radius:50%;background:#fff;animation:pulse 1.5s infinite"></div>
+        </div>
+        <div style="width:2px;height:32px;background:rgba(255,255,255,0.1)"></div>
+      </div>
+      <div style="padding-top:4px">
+        <p style="font-size:14px;font-weight:600;color:{{primary1}};margin:0">On the Way</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);margin:2px 0 0">{{driverName}} is delivering your order</p>
+      </div>
+    </div>
+
+    <!-- Step 4: Delivered ⚪ (Pending) -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+      </div>
+      <div style="padding-top:4px">
+        <p style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.3);margin:0">Delivered</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.2);margin:2px 0 0">Estimated {{estimatedTime}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver Card -->
+  <div style="padding:0 20px 16px">
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:14px;display:flex;align-items:center;gap:12px">
+      <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,{{accent1a}},{{accent1b}});display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700">{{driverInitials}}</div>
+      <div style="flex:1">
+        <p style="font-size:14px;font-weight:600;margin:0">{{driverName}}</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);margin:2px 0 0">⭐ {{driverRating}} · {{driverVehicle}}</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{primary1}}" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div style="width:40px;height:40px;border-radius:12px;background:{{primary1}};display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary -->
+  <div style="padding:0 20px 100px">
+    <p style="font-size:16px;font-weight:600;margin:0 0 12px">Order Summary</p>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;color:rgba(255,255,255,0.5)">{{item1Qty}}x</span>
+          <span style="font-size:13px;font-weight:500">{{item1Name}}</span>
+        </div>
+        <span style="font-size:13px;font-weight:600">{{item1Price}}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;color:rgba(255,255,255,0.5)">{{item2Qty}}x</span>
+          <span style="font-size:13px;font-weight:500">{{item2Name}}</span>
+        </div>
+        <span style="font-size:13px;font-weight:600">{{item2Price}}</span>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin:10px 0"></div>
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:14px;font-weight:700">Total</span>
+        <span style="font-size:14px;font-weight:700;color:{{primary1}}">{{total}}</span>
+      </div>
+    </div>
+  </div>
+
+  <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}</style>
+</div>

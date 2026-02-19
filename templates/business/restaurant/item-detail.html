@@ -1,0 +1,98 @@
+<!-- Food Item Detail Screen -->
+<div style="min-height:100vh;background:#050507;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;color:#fff;overflow-x:hidden">
+  <!-- Status Bar -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px 0;font-size:12px;font-weight:600"><span>9:41</span><div style="display:flex;gap:4px;align-items:center"><svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="6" width="3" height="6" rx="1" fill="#fff"/><rect x="4.5" y="4" width="3" height="8" rx="1" fill="#fff"/><rect x="9" y="1.5" width="3" height="10.5" rx="1" fill="#fff"/><rect x="13" y="0" width="3" height="12" rx="1" fill="#fff"/></svg><svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="21" height="10" rx="2" stroke="#fff" stroke-width="1" fill="none"/><rect x="1.5" y="2.5" width="16" height="7" rx="1" fill="#fff"/></svg></div></div>
+
+  <!-- Hero Image -->
+  <div style="height:240px;background:linear-gradient(135deg,{{primary1}},{{primary2}});position:relative;margin:12px 20px 0;border-radius:24px;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,255,255,0.15),transparent 60%)"></div>
+    <div style="position:absolute;bottom:20px;left:20px;font-size:80px">{{itemEmoji}}</div>
+    <!-- Top buttons -->
+    <div style="position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between">
+      <div style="width:36px;height:36px;border-radius:12px;background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div style="width:36px;height:36px;border-radius:12px;background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:20px">
+    <!-- Title & Price -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+      <div>
+        <p style="font-size:22px;font-weight:800;margin:0">{{itemName}}</p>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <span style="font-size:12px;color:rgba(255,255,255,0.4)">⭐ {{itemRating}} ({{reviewCount}})</span>
+          <span style="font-size:12px;color:rgba(255,255,255,0.2)">•</span>
+          <span style="font-size:12px;color:rgba(255,255,255,0.4)">🕐 {{prepTime}}</span>
+        </div>
+      </div>
+      <p style="font-size:22px;font-weight:800;color:{{primary1}};margin:0">{{itemPrice}}</p>
+    </div>
+
+    <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;margin:8px 0 20px">{{itemDescription}}</p>
+
+    <!-- Dietary Tags -->
+    <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap">
+      <span style="padding:4px 10px;border-radius:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;font-size:11px;font-weight:500">{{tag1}}</span>
+      <span style="padding:4px 10px;border-radius:8px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);color:#fbbf24;font-size:11px;font-weight:500">{{tag2}}</span>
+      <span style="padding:4px 10px;border-radius:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#ef4444;font-size:11px;font-weight:500">{{tag3}}</span>
+    </div>
+
+    <!-- Size Selection -->
+    <p style="font-size:14px;font-weight:600;margin:0 0 10px">Choose Size</p>
+    <div style="display:flex;gap:10px;margin-bottom:20px">
+      <div style="flex:1;padding:12px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);text-align:center">
+        <p style="font-size:13px;font-weight:500;margin:0;color:rgba(255,255,255,0.5)">Small</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:2px 0 0">{{sizeSmallPrice}}</p>
+      </div>
+      <div style="flex:1;padding:12px;border-radius:12px;background:{{primary1}}15;border:2px solid {{primary1}};text-align:center">
+        <p style="font-size:13px;font-weight:600;margin:0;color:{{primary1}}">Medium</p>
+        <p style="font-size:12px;color:{{primary1}};margin:2px 0 0;opacity:0.7">{{sizeMediumPrice}}</p>
+      </div>
+      <div style="flex:1;padding:12px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);text-align:center">
+        <p style="font-size:13px;font-weight:500;margin:0;color:rgba(255,255,255,0.5)">Large</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:2px 0 0">{{sizeLargePrice}}</p>
+      </div>
+    </div>
+
+    <!-- Toppings -->
+    <p style="font-size:14px;font-weight:600;margin:0 0 10px">Extra Toppings</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">{{topping1Icon}}</span><span style="font-size:13px">{{topping1Name}}</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:rgba(255,255,255,0.4)">+{{topping1Price}}</span><div style="width:22px;height:22px;border-radius:6px;background:{{primary1}};display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">{{topping2Icon}}</span><span style="font-size:13px">{{topping2Name}}</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:rgba(255,255,255,0.4)">+{{topping2Price}}</span><div style="width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1)"></div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">{{topping3Icon}}</span><span style="font-size:13px">{{topping3Name}}</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:rgba(255,255,255,0.4)">+{{topping3Price}}</span><div style="width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1)"></div></div>
+      </div>
+    </div>
+
+    <!-- Special Instructions -->
+    <p style="font-size:14px;font-weight:600;margin:0 0 10px">Special Instructions</p>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px;margin-bottom:20px">
+      <p style="font-size:13px;color:rgba(255,255,255,0.3);margin:0">E.g., no onions, extra sauce...</p>
+    </div>
+
+    <!-- Quantity -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:24px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600">−</div>
+      <span style="font-size:20px;font-weight:700;min-width:24px;text-align:center">1</span>
+      <div style="width:40px;height:40px;border-radius:12px;background:{{primary1}};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600">+</div>
+    </div>
+  </div>
+
+  <!-- Add to Cart Button -->
+  <div style="padding:0 20px 32px">
+    <div style="background:linear-gradient(135deg,{{primary1}},{{primary2}});border-radius:16px;padding:16px;text-align:center;font-size:15px;font-weight:700;box-shadow:0 4px 20px {{primary1}}40">
+      Add to Cart — {{totalPrice}}
+    </div>
+  </div>
+</div>

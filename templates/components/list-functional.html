@@ -1,0 +1,42 @@
+<!-- List: Functional Dynamic List (data-bound via AF runtime) -->
+<div class="mt-4 anim-4">
+    <div class="flex justify-between items-center mb-3">
+        <h2 class="text-base font-semibold">{{listTitle}}</h2>
+        <button class="text-xs font-medium touch-btn" style="color:{{primary1}}" data-af-action="navigate" data-screen="{{createScreen}}">+ Add New</button>
+    </div>
+    
+    <!-- Loading state -->
+    <div data-af-loading class="af-loading" style="display:none;">
+        <div style="padding:40px;text-align:center;opacity:0.5;">
+            <div style="width:24px;height:24px;border:2px solid rgba(255,255,255,0.2);border-top-color:{{primary1}};border-radius:50%;animation:af-spin 0.6s linear infinite;margin:0 auto 12px;"></div>
+            <p style="font-size:13px;">Loading...</p>
+        </div>
+    </div>
+    
+    <!-- Empty state -->
+    <div data-af-empty style="display:none;">
+        <div style="padding:40px;text-align:center;opacity:0.5;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;opacity:0.3;"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+            <p style="font-size:14px;font-weight:600;margin-bottom:4px;">No {{listTitle}} yet</p>
+            <p style="font-size:12px;">Tap "+ Add New" to create your first one</p>
+        </div>
+    </div>
+    
+    <!-- Error state -->
+    <div data-af-error style="display:none;">
+        <div style="padding:24px;text-align:center;border-radius:16px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);">
+            <p style="font-size:13px;color:#fca5a5;" data-af-error-msg>Something went wrong</p>
+            <button style="margin-top:8px;font-size:12px;color:{{primary1}};font-weight:600;" data-af-retry>Try again</button>
+        </div>
+    </div>
+    
+    <!-- Dynamic list container -->
+    <div data-list data-collection="{{listCollection}}" class="space-y-3">
+        <!-- Items rendered dynamically by AF.lists.bind() -->
+    </div>
+    
+    <!-- Pagination -->
+    <div data-af-pagination style="display:none;padding:16px;text-align:center;">
+        <button data-af-load-more class="px-6 py-2.5 rounded-xl glass-sm text-xs font-medium touch-btn" style="color:{{primary1}}">Load More</button>
+    </div>
+</div>

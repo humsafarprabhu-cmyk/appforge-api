@@ -1,0 +1,117 @@
+{
+  "dashboard-a": {
+    "components": [
+      "status-bar",
+      "header-greeting",
+      "stats-ring",
+      "chart-bar-weekly",
+      "list-icon-rows",
+      "nav-bottom-fab"
+    ],
+    "description": "Progress ring dashboard with weekly chart and activity list"
+  },
+  "dashboard-b": {
+    "components": [
+      "status-bar",
+      "header-hero",
+      "stats-cards-3",
+      "chart-donut",
+      "list-horizontal-scroll",
+      "nav-bottom-5"
+    ],
+    "description": "Hero banner with donut chart and horizontal scroll cards"
+  },
+  "dashboard-c": {
+    "components": [
+      "status-bar",
+      "header-search",
+      "stats-pills",
+      "chart-progress-bars",
+      "list-icon-rows",
+      "nav-bottom-5"
+    ],
+    "description": "Search-first with scrolling pills and category progress bars"
+  },
+  "list-a": {
+    "components": [
+      "status-bar",
+      "header-search",
+      "list-icon-rows",
+      "list-icon-rows",
+      "nav-bottom-fab"
+    ],
+    "description": "Search + filter chips with icon row items"
+  },
+  "list-b": {
+    "components": [
+      "status-bar",
+      "header-greeting",
+      "list-horizontal-scroll",
+      "list-icon-rows",
+      "nav-bottom-5"
+    ],
+    "description": "Featured horizontal cards + vertical list"
+  },
+  "detail-a": {
+    "components": [
+      "status-bar",
+      "detail-hero-header",
+      "list-icon-rows",
+      "nav-bottom-5"
+    ],
+    "description": "Hero gradient header with stats and related items"
+  },
+  "form-a": {
+    "components": [
+      "status-bar",
+      "header-greeting",
+      "form-glass-inputs",
+      "nav-bottom-5"
+    ],
+    "description": "Clean glass inputs with tags and toggle"
+  },
+  "profile-a": {
+    "components": [
+      "status-bar",
+      "profile-avatar-stats",
+      "nav-bottom-5"
+    ],
+    "description": "Avatar with gradient border, stats row, settings list"
+  },
+  "auth-login": {
+    "components": [
+      "auth-login"
+    ],
+    "description": "Login screen with email/password, forgot password link, signup redirect"
+  },
+  "auth-signup": {
+    "components": [
+      "auth-signup"
+    ],
+    "description": "Signup screen with name/email/password, login redirect"
+  },
+  "auth-forgot": {
+    "components": [
+      "auth-forgot"
+    ],
+    "description": "Forgot password screen with email input"
+  },
+  "list-functional": {
+    "components": [
+      "status-bar",
+      "header-search",
+      "list-functional",
+      "nav-bottom-fab"
+    ],
+    "description": "Dynamic list bound to collection with loading/empty/error states, pagination"
+  },
+  "form-functional": {
+    "components": [
+      "status-bar",
+      "header-greeting",
+      "form-functional",
+      "nav-bottom-5"
+    ],
+    "description": "Form bound to collection with validation, error handling, submit"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "indigo": {
+    "primary1": "#6366f1", "primary2": "#8b5cf6",
+    "accent1a": "#10b981", "accent1b": "#34d399",
+    "accent2a": "#f59e0b", "accent2b": "#fbbf24",
+    "accent3a": "#f43f5e", "accent3b": "#fb7185",
+    "navActiveColor": "#6366f1"
+  },
+  "emerald": {
+    "primary1": "#10b981", "primary2": "#34d399",
+    "accent1a": "#3b82f6", "accent1b": "#60a5fa",
+    "accent2a": "#f59e0b", "accent2b": "#fbbf24",
+    "accent3a": "#f43f5e", "accent3b": "#fb7185",
+    "navActiveColor": "#10b981"
+  },
+  "blue": {
+    "primary1": "#3b82f6", "primary2": "#60a5fa",
+    "accent1a": "#10b981", "accent1b": "#34d399",
+    "accent2a": "#f43f5e", "accent2b": "#fb7185",
+    "accent3a": "#f59e0b", "accent3b": "#fbbf24",
+    "navActiveColor": "#3b82f6"
+  },
+  "rose": {
+    "primary1": "#f43f5e", "primary2": "#fb7185",
+    "accent1a": "#6366f1", "accent1b": "#8b5cf6",
+    "accent2a": "#f59e0b", "accent2b": "#fbbf24",
+    "accent3a": "#10b981", "accent3b": "#34d399",
+    "navActiveColor": "#f43f5e"
+  },
+  "orange": {
+    "primary1": "#f59e0b", "primary2": "#fbbf24",
+    "accent1a": "#6366f1", "accent1b": "#8b5cf6",
+    "accent2a": "#10b981", "accent2b": "#34d399",
+    "accent3a": "#f43f5e", "accent3b": "#fb7185",
+    "navActiveColor": "#f59e0b"
+  },
+  "purple": {
+    "primary1": "#8b5cf6", "primary2": "#a78bfa",
+    "accent1a": "#ec4899", "accent1b": "#f472b6",
+    "accent2a": "#06b6d4", "accent2b": "#22d3ee",
+    "accent3a": "#f59e0b", "accent3b": "#fbbf24",
+    "navActiveColor": "#8b5cf6"
+  },
+  "teal": {
+    "primary1": "#14b8a6", "primary2": "#2dd4bf",
+    "accent1a": "#6366f1", "accent1b": "#8b5cf6",
+    "accent2a": "#f59e0b", "accent2b": "#fbbf24",
+    "accent3a": "#f43f5e", "accent3b": "#fb7185",
+    "navActiveColor": "#14b8a6"
+  }
+}

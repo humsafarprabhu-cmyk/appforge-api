@@ -1,0 +1,39 @@
+<!-- Stats: Progress Ring + Metrics -->
+<div class="glass mt-5 p-5 anim-2">
+    <div class="flex items-center gap-5">
+        <div class="relative w-24 h-24 flex-shrink-0">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="{{ringOffset}}" class="ring-progress"/>
+                <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="{{primary1}}"/><stop offset="100%" stop-color="{{primary2}}"/></linearGradient></defs>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-xl font-extrabold">{{ringPercent}}%</span>
+                <span class="text-[10px] text-muted">{{ringLabel}}</span>
+            </div>
+        </div>
+        <div class="flex-1 space-y-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full ga1"></div>
+                    <span class="text-xs text-muted">{{metric1Label}}</span>
+                </div>
+                <span class="text-sm font-bold">{{metric1Value}} <span class="text-muted font-normal">/ {{metric1Target}}</span></span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full gp"></div>
+                    <span class="text-xs text-muted">{{metric2Label}}</span>
+                </div>
+                <span class="text-sm font-bold">{{metric2Value}} <span class="text-muted font-normal">/ {{metric2Target}}</span></span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full ga2"></div>
+                    <span class="text-xs text-muted">{{metric3Label}}</span>
+                </div>
+                <span class="text-sm font-bold">{{metric3Value}} <span class="text-muted font-normal">/ {{metric3Target}}</span></span>
+            </div>
+        </div>
+    </div>
+</div>

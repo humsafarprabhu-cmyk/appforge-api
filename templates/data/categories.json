@@ -1,0 +1,142 @@
+{
+  "fitness": {
+    "keywords": ["fitness", "workout", "health", "exercise", "gym", "run", "yoga", "training", "steps", "calories"],
+    "themes": ["indigo", "emerald", "orange"],
+    "defaultScreens": ["Dashboard", "Workouts", "Workout Detail", "New Workout", "Profile"],
+    "navItems": ["Dashboard", "Workouts", "Add", "Progress", "Profile"],
+    "navIcons": ["home", "bar-chart", "plus", "trending-up", "user"],
+    "screenBlueprints": {
+      "Dashboard": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Workouts": ["list-a", "list-b"],
+      "Workout Detail": ["detail-a"],
+      "New Workout": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "finance": {
+    "keywords": ["finance", "money", "bank", "budget", "invest", "expense", "wallet", "savings", "payment", "crypto"],
+    "themes": ["blue", "emerald", "purple"],
+    "defaultScreens": ["Dashboard", "Transactions", "Transaction Detail", "Add Transaction", "Profile"],
+    "navItems": ["Dashboard", "Transactions", "Add", "Analytics", "Profile"],
+    "navIcons": ["home", "wallet", "plus", "bar-chart", "user"],
+    "screenBlueprints": {
+      "Dashboard": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Transactions": ["list-a", "list-b"],
+      "Transaction Detail": ["detail-a"],
+      "Add Transaction": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "food": {
+    "keywords": ["food", "recipe", "cooking", "meal", "restaurant", "diet", "nutrition", "grocery", "kitchen", "chef"],
+    "themes": ["orange", "emerald", "rose"],
+    "defaultScreens": ["Home", "Recipes", "Recipe Detail", "Add Recipe", "Profile"],
+    "navItems": ["Home", "Recipes", "Add", "Meal Plan", "Profile"],
+    "navIcons": ["home", "book", "plus", "calendar", "user"],
+    "screenBlueprints": {
+      "Home": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Recipes": ["list-a", "list-b"],
+      "Recipe Detail": ["detail-a"],
+      "Add Recipe": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "productivity": {
+    "keywords": ["task", "todo", "productivity", "organize", "note", "planner", "habit", "project", "kanban", "reminder"],
+    "themes": ["indigo", "teal", "rose"],
+    "defaultScreens": ["Dashboard", "Tasks", "Task Detail", "New Task", "Profile"],
+    "navItems": ["Dashboard", "Tasks", "Add", "Calendar", "Profile"],
+    "navIcons": ["home", "check", "plus", "calendar", "user"],
+    "screenBlueprints": {
+      "Dashboard": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Tasks": ["list-a", "list-b"],
+      "Task Detail": ["detail-a"],
+      "New Task": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "social": {
+    "keywords": ["social", "chat", "message", "friend", "community", "feed", "post", "share", "network", "follow"],
+    "themes": ["blue", "purple", "emerald"],
+    "defaultScreens": ["Feed", "Discover", "Post Detail", "New Post", "Profile"],
+    "navItems": ["Feed", "Discover", "Create", "Messages", "Profile"],
+    "navIcons": ["home", "search", "plus", "heart", "user"],
+    "screenBlueprints": {
+      "Feed": ["dashboard-b", "dashboard-c"],
+      "Discover": ["list-a", "list-b"],
+      "Post Detail": ["detail-a"],
+      "New Post": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "education": {
+    "keywords": ["education", "learning", "study", "course", "student", "quiz", "flashcard", "lesson", "teacher", "school"],
+    "themes": ["blue", "purple", "teal"],
+    "defaultScreens": ["Dashboard", "Courses", "Course Detail", "Quiz", "Profile"],
+    "navItems": ["Home", "Courses", "Add", "Progress", "Profile"],
+    "navIcons": ["home", "book", "plus", "trending-up", "user"],
+    "screenBlueprints": {
+      "Dashboard": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Courses": ["list-a", "list-b"],
+      "Course Detail": ["detail-a"],
+      "Quiz": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "ecommerce": {
+    "keywords": ["shop", "store", "ecommerce", "product", "cart", "buy", "order", "sale", "marketplace", "deal"],
+    "themes": ["indigo", "rose", "orange"],
+    "defaultScreens": ["Home", "Products", "Product Detail", "Cart", "Profile"],
+    "navItems": ["Home", "Browse", "Cart", "Orders", "Profile"],
+    "navIcons": ["home", "search", "shopping-bag", "bar-chart", "user"],
+    "screenBlueprints": {
+      "Home": ["dashboard-b", "dashboard-c"],
+      "Products": ["list-a", "list-b"],
+      "Product Detail": ["detail-a"],
+      "Cart": ["list-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "travel": {
+    "keywords": ["travel", "trip", "booking", "hotel", "flight", "vacation", "destination", "itinerary", "explore", "adventure"],
+    "themes": ["blue", "teal", "orange"],
+    "defaultScreens": ["Explore", "Trips", "Trip Detail", "Plan Trip", "Profile"],
+    "navItems": ["Explore", "Trips", "Add", "Saved", "Profile"],
+    "navIcons": ["home", "map-pin", "plus", "heart", "user"],
+    "screenBlueprints": {
+      "Explore": ["dashboard-b", "dashboard-c"],
+      "Trips": ["list-a", "list-b"],
+      "Trip Detail": ["detail-a"],
+      "Plan Trip": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "music": {
+    "keywords": ["music", "song", "playlist", "audio", "podcast", "radio", "artist", "album", "listen", "beats"],
+    "themes": ["purple", "rose", "blue"],
+    "defaultScreens": ["Home", "Library", "Now Playing", "Playlists", "Profile"],
+    "navItems": ["Home", "Search", "Library", "Radio", "Profile"],
+    "navIcons": ["home", "search", "music", "play", "user"],
+    "screenBlueprints": {
+      "Home": ["dashboard-b", "dashboard-c"],
+      "Library": ["list-a", "list-b"],
+      "Now Playing": ["detail-a"],
+      "Playlists": ["list-b"],
+      "Profile": ["profile-a"]
+    }
+  },
+  "lifestyle": {
+    "keywords": ["pet", "wellness", "meditation", "sleep", "water", "mood", "habit", "self-care", "routine", "mindful"],
+    "themes": ["emerald", "purple", "orange"],
+    "defaultScreens": ["Dashboard", "Activities", "Activity Detail", "New Entry", "Profile"],
+    "navItems": ["Home", "Activities", "Add", "Insights", "Profile"],
+    "navIcons": ["home", "heart", "plus", "bar-chart", "user"],
+    "screenBlueprints": {
+      "Dashboard": ["dashboard-a", "dashboard-b", "dashboard-c"],
+      "Activities": ["list-a", "list-b"],
+      "Activity Detail": ["detail-a"],
+      "New Entry": ["form-a"],
+      "Profile": ["profile-a"]
+    }
+  }
+}

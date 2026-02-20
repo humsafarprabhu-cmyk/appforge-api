@@ -469,6 +469,74 @@ app.get('/api/job/:jobId', (req, res) => {
   });
 });
 
+// ─── APP ICON GENERATOR ──────────────────────────────────────────────────────
+app.post('/api/generate-icon', async (req, res) => {
+  try {
+    const { appName, category, style } = req.body;
+    if (!appName) return res.status(400).json({ success: false, message: 'Missing appName' });
+
+    const cat = category || 'productivity';
+    const iconStyle = style || 'gradient';
+
+    // Category-based color schemes
+    const colorSchemes: Record<string, { bg: string[], fg: string }> = {
+      fitness: { bg: ['#6366f1', '#8b5cf6'], fg: '#fff' },
+      finance: { bg: ['#3b82f6', '#06b6d4'], fg: '#fff' },
+      food: { bg: ['#f97316', '#ef4444'], fg: '#fff' },
+      productivity: { bg: ['#6366f1', '#a855f7'], fg: '#fff' },
+      social: { bg: ['#ec4899', '#8b5cf6'], fg: '#fff' },
+      education: { bg: ['#8b5cf6', '#3b82f6'], fg: '#fff' },
+      ecommerce: { bg: ['#f59e0b', '#ef4444'], fg: '#fff' },
+      travel: { bg: ['#06b6d4', '#3b82f6'], fg: '#fff' },
+      music: { bg: ['#a855f7', '#ec4899'], fg: '#fff' },
+      lifestyle: { bg: ['#10b981', '#06b6d4'], fg: '#fff' },
+      health: { bg: ['#14b8a6', '#06b6d4'], fg: '#fff' },
+      quiz: { bg: ['#8b5cf6', '#6366f1'], fg: '#fff' },
+      portfolio: { bg: ['#64748b', '#334155'], fg: '#fff' },
+      realestate: { bg: ['#059669', '#10b981'], fg: '#fff' },
+      news: { bg: ['#dc2626', '#991b1b'], fg: '#fff' },
+      dating: { bg: ['#ec4899', '#f43f5e'], fg: '#fff' },
+    };
+
+    const scheme = colorSchemes[cat] || colorSchemes.productivity;
+    const initials = appName.split(/\s+/).map((w: string) => w[0]).join('').substring(0, 2).toUpperCase();
+
+    // Category emojis for icon
+    const emojis: Record<string, string> = {
+      fitness: '💪', finance: '💰', food: '🍳', productivity: '⚡', social: '💬',
+      education: '📚', ecommerce: '🛍️', travel: '✈️', music: '🎵', lifestyle: '🌱',
+      health: '❤️', quiz: '🧠', portfolio: '🎨', realestate: '🏠', news: '📰', dating: '💝',
+    };
+
+    // Generate SVG icon
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${scheme.bg[0]}"/>
+      <stop offset="100%" stop-color="${scheme.bg[1]}"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="896" rx="192" fill="rgba(255,255,255,0.08)" filter="url(#shadow)"/>
+  <text x="512" y="540" text-anchor="middle" dominant-baseline="central" font-family="Inter,-apple-system,sans-serif" font-size="360" font-weight="700" fill="${scheme.fg}" opacity="0.95">${initials}</text>
+  <text x="512" y="780" text-anchor="middle" font-family="Inter,-apple-system,sans-serif" font-size="80" fill="${scheme.fg}" opacity="0.4">${emojis[cat] || '⚡'}</text>
+</svg>`;
+
+    res.json({
+      success: true,
+      svg,
+      initials,
+      colors: scheme,
+      emoji: emojis[cat] || '⚡',
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // ─── TEMPLATE GALLERY ────────────────────────────────────────────────────────
 const galleryData = JSON.parse(readFileSync(join(import.meta.dirname || __dirname, 'templates/data/gallery.json'), 'utf-8'));
 
@@ -707,6 +775,27 @@ app.get('/api/usage', (req, res) => {
 // Health check
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', version: '4.0', uptime: process.uptime() });
+});
+
+// Stats
+app.get('/api/stats', (_req, res) => {
+  const activeJobs = Array.from(jobs.values());
+  const completed = activeJobs.filter(j => j.status === 'complete').length;
+  const failed = activeJobs.filter(j => j.status === 'error').length;
+  const inProgress = activeJobs.filter(j => j.status !== 'complete' && j.status !== 'error').length;
+  const totalScreens = activeJobs.reduce((sum, j) => sum + j.screens.length, 0);
+  
+  res.json({
+    totalApps: activeJobs.length,
+    completed,
+    failed,
+    inProgress,
+    totalScreens,
+    uptime: Math.floor(process.uptime()),
+    categories: 16,
+    templates: 20,
+    features: ['generation', 'editing', 'templates', 'rn-export', 'live-preview', 'icon-gen', 'branding'],
+  });
 });
 
 // ─── LIVE PREVIEW (self-hosted via tunnel) ───────────────────────────────────

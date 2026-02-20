@@ -293,20 +293,44 @@ export function getPersonalizationPrompt(
 
   const tokenList = Array.from(allTokens);
 
+  // Category-specific hints for better content
+  const categoryHints: Record<string, string> = {
+    fitness: 'Use real exercise names (Push-ups, HIIT, Deadlifts), calories burned, sets/reps, muscle groups, workout durations. Stats: streak days, calories, workouts completed.',
+    finance: 'Use real transaction types (Groceries, Netflix, Salary), dollar amounts, bank names, budget categories. Stats: savings rate, monthly spending, net worth.',
+    food: 'Use real dish names (Pad Thai, Caesar Salad), cooking times, difficulty levels, ingredients count, cuisine types. Stats: recipes saved, meals cooked, favorites.',
+    productivity: 'Use real task names (Design mockups, Review PR, Team standup), priority levels, project names, deadlines. Stats: tasks completed, streak, productivity score.',
+    social: 'Use realistic usernames (@sarah_designs), post captions, follower counts, engagement metrics. Stats: posts, followers, following.',
+    education: 'Use real course names (Intro to Python, Calculus II), lesson durations, quiz scores, certificates. Stats: courses enrolled, hours learned, certificates.',
+    ecommerce: 'Use real product names (Nike Air Max 90, MacBook Pro), prices, ratings, review counts, discount percentages. Stats: orders, wishlist items, rewards points.',
+    travel: 'Use real destinations (Bali, Tokyo, Barcelona), flight prices, hotel ratings, trip durations. Stats: trips planned, countries visited, miles traveled.',
+    music: 'Use real-sounding song/artist names, album art descriptions, playlist durations, play counts. Stats: songs played, playlists, listening hours.',
+    lifestyle: 'Use real habit/activity names (Meditation, Journaling, Reading), streak days, mood ratings. Stats: habits tracked, best streak, wellness score.',
+    quiz: 'Use real quiz categories (Science, History, Pop Culture), difficulty levels, scores, time limits. Stats: quizzes taken, correct answers, high scores.',
+    portfolio: 'Use real project names (E-commerce Redesign, Brand Identity), client names, tools used. Stats: projects completed, clients, years experience.',
+    health: 'Use real medical terms (Blood Pressure, BMI), doctor specialties, appointment types, medication names. Stats: appointments, prescriptions, health score.',
+    realestate: 'Use real property types (2BR Apartment, Luxury Villa), prices, square footage, neighborhoods. Stats: listings viewed, saved properties, tours scheduled.',
+    news: 'Use realistic headlines, publication names, reading times, topic categories. Stats: articles read, bookmarks, reading streak.',
+    dating: 'Use realistic profile descriptions, interests, compatibility percentages, distance. Stats: matches, conversations, profile views.',
+  };
+
+  const hint = categoryHints[category] || 'Use realistic, domain-specific data.';
+
   const system = `You are a mobile app content generator. Given an app concept, generate realistic, contextual sample data for UI placeholders.
 
 RULES:
 - Return ONLY valid JSON — no markdown, no explanation
-- Every value must be realistic and specific to the app (not generic)
+- Every value must be SPECIFIC to this exact app (not generic placeholder text)
+- ${hint}
 - Names should be real-sounding (not "John Doe" or "User 1")
 - Numbers should be realistic for the domain
 - Descriptions should be 1-2 sentences max
 - For icon tokens, choose from this list ONLY: ${Object.keys(icons).join(', ')}
-- For badge/meta values, use short text ("+320 cal", "4.8★", "$24.99", "2h ago")
+- For badge/meta values, use short contextual text ("+320 cal", "4.8★", "$24.99", "2h ago")
 - ringOffset should be a number 0-264 (264 = empty, 0 = full). Calculate from ringPercent: offset = 264 - (percent/100 * 264)
 - Bar chart percentages (bar1-bar7): values between 20-95
 - Progress bar percentages (bar1Pct-bar4Pct): values between 15-95
-- Donut segments: seg1Dash + seg2Dash + seg3Dash should total ~200 (out of 239 circumference). seg12Dash = seg1Dash + seg2Dash`;
+- Donut segments: seg1Dash + seg2Dash + seg3Dash should total ~200 (out of 239 circumference). seg12Dash = seg1Dash + seg2Dash
+- Make item titles, subtitles, and badges feel like REAL app data, not lorem ipsum`;
 
   const user = `App: "${appName}"
 Description: ${appDescription}

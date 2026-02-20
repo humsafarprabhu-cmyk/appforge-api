@@ -56,8 +56,21 @@ function readTemplateFiles(dir: string, base: string = ''): Record<string, strin
 /**
  * Fill all {{placeholder}} values in screen templates with context-appropriate defaults.
  */
-function fillScreenPlaceholders(content: string, screenName: string, appName: string, _screenType: string): string {
+function fillScreenPlaceholders(content: string, screenName: string, appName: string, _screenType: string, meta?: AppMeta): string {
+  // Find tab names for navigation
+  const listTab = meta?.screens.find(s => s.type.includes('list'))?.name || 'List';
+  const profileTab = meta?.screens.find(s => s.type.includes('profile'))?.name || 'Profile';
+  const formScreen = meta?.screens.find(s => s.type.includes('form'));
+  const detailScreen = meta?.screens.find(s => s.type.includes('detail'));
+  const formScreenName = formScreen ? formScreen.name.replace(/\s/g, '') + 'Screen' : 'FormScreen';
+  const detailScreenName = detailScreen ? detailScreen.name.replace(/\s/g, '') + 'Screen' : 'DetailScreen';
   const defaults: Record<string, string> = {
+    appName: appName,
+    pageTitle: screenName,
+    listTab: listTab,
+    profileTab: profileTab,
+    formScreenName: formScreenName,
+    detailScreenName: detailScreenName,
     greetingSubtext: 'Welcome back', userName: 'User', userInitials: 'U',
     ringPercent: '72', ringLabel: 'Progress',
     metric1Label: 'Total', metric1Value: '24', metric1Target: '30',
@@ -126,12 +139,16 @@ function applyTheme(content: string, meta: AppMeta): string {
  * Generate App.tsx with correct screen imports and tab configuration
  */
 function generateAppTsx(meta: AppMeta): string {
+  // Separate tab screens (dashboard, list, profile) from stack screens (detail, form)
+  const tabScreens = meta.screens.filter(s => !s.type.includes('detail') && !s.type.includes('form'));
+  const stackScreens = meta.screens.filter(s => s.type.includes('detail') || s.type.includes('form'));
+
   const imports = meta.screens
-    .map((s, i) => `import ${s.name.replace(/\s/g, '')}Screen from './src/screens/${s.name.replace(/\s/g, '')}Screen';`)
+    .map(s => `import ${s.name.replace(/\s/g, '')}Screen from './src/screens/${s.name.replace(/\s/g, '')}Screen';`)
     .join('\n');
-  
-  const tabScreens = meta.screens
-    .map((s, i) => {
+
+  const tabConfig = tabScreens
+    .map(s => {
       const componentName = s.name.replace(/\s/g, '') + 'Screen';
       const icon = getTabIcon(s.name, s.type);
       return `          <Tab.Screen 
@@ -148,19 +165,27 @@ function generateAppTsx(meta: AppMeta): string {
     })
     .join('\n');
 
+  const stackConfig = stackScreens
+    .map(s => {
+      const componentName = s.name.replace(/\s/g, '') + 'Screen';
+      return `          <Stack.Screen name="${componentName}" component={${componentName}} />`;
+    })
+    .join('\n');
+
   return `import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Svg, { Path, Circle, Rect, Polyline, Polygon, Line } from 'react-native-svg';
 import { theme } from './src/theme';
-import { auth, ads, notifications } from './src/services';
-import { config } from './src/config';
+import { store } from './src/store';
 
 ${imports}
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const DarkTheme = {
   ...DefaultTheme,
@@ -174,37 +199,40 @@ const DarkTheme = {
   },
 };
 
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: 'rgba(5,5,7,0.95)',
+          borderTopColor: 'rgba(255,255,255,0.06)',
+          borderTopWidth: 1,
+          height: 64,
+          paddingBottom: 8,
+          paddingTop: 4,
+        },
+        tabBarActiveTintColor: theme.colors.primary[0],
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.4)',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: '500' },
+      }}
+    >
+${tabConfig}
+    </Tab.Navigator>
+  );
+}
+
 export default function App() {
-  useEffect(() => {
-    (async () => {
-      if (config.features.auth) await auth.restoreSession();
-      if (config.features.ads) await ads.initialize();
-      if (config.features.pushNotifications) await notifications.register();
-    })();
-  }, []);
+  useEffect(() => { store.init(); }, []);
 
   return (
     <SafeAreaProvider>
       <NavigationContainer theme={DarkTheme}>
         <StatusBar style="light" />
-        <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-            tabBarStyle: {
-              backgroundColor: 'rgba(5,5,7,0.95)',
-              borderTopColor: 'rgba(255,255,255,0.06)',
-              borderTopWidth: 1,
-              height: 64,
-              paddingBottom: 8,
-              paddingTop: 4,
-            },
-            tabBarActiveTintColor: theme.colors.primary[0],
-            tabBarInactiveTintColor: 'rgba(255,255,255,0.4)',
-            tabBarLabelStyle: { fontSize: 10, fontWeight: '500' },
-          }}
-        >
-${tabScreens}
-        </Tab.Navigator>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Main" component={TabNavigator} />
+${stackConfig}
+        </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );
@@ -353,7 +381,7 @@ export function assembleExpoProject(meta: AppMeta): Record<string, string> {
         .replace(new RegExp(`function ${screenType}Screen`, 'g'), `function ${componentName}Screen`);
       
       customized = applyTheme(customized, meta);
-      customized = fillScreenPlaceholders(customized, screen.name, meta.appName, screenType);
+      customized = fillScreenPlaceholders(customized, screen.name, meta.appName, screenType, meta);
       files[`src/screens/${componentName}Screen.tsx`] = customized;
     }
     

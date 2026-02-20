@@ -581,7 +581,7 @@ app.post('/api/export/react-native', async (req, res) => {
       theme: themeMap[cat] || themeMap.productivity,
       screens: screens.map((s: any, i: number) => ({
         name: s.name || `Screen${i + 1}`,
-        type: s.blueprint || (i === 0 ? 'dashboard-a' : i === screens.length - 1 ? 'profile-a' : 'list-b'),
+        type: s.type || s.blueprint || (i === 0 ? 'dashboard-a' : i === screens.length - 1 ? 'profile-a' : 'list-b'),
       })),
       features,
       dbMode: 'managed' as const,

@@ -1,11 +1,14 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import OpenAI from 'openai';
 import Anthropic from '@anthropic-ai/sdk';
 import { randomUUID } from 'crypto';
-import sdkRoutesV2 from './sdk-routes-v2.ts';
-import sdkAdminRoutes from './sdk-admin-routes.ts';
+// import sdkRoutesV2 from './sdk-routes-v2.ts'; // Disabled — CJS/ESM compat issues, not needed for builder
+// import sdkAdminRoutes from './sdk-admin-routes.ts'; // Disabled — CJS/ESM compat issues
 import { provisionApp } from './provisioning.ts';
+import { createWhatsAppRoutes, setBaseUrl } from './whatsapp-bot.ts';
+import metaWebhook from './meta-webhook.ts';
 import {
   detectCategory as detectCat,
   selectTheme,
@@ -20,9 +23,9 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 // SDK routes v2 (hardened: validation, rate limiting, roles, proper errors)
-app.use('/sdk', sdkRoutesV2);
+// app.use('/sdk', sdkRoutesV2); // Disabled — not needed for builder
 // Admin SDK routes (admin-only: stats, user management, data management, export)
-app.use('/sdk/admin', sdkAdminRoutes);
+// app.use('/sdk/admin', sdkAdminRoutes); // Disabled
 
 // Serve the runtime JS for generated apps
 import { readFileSync } from 'fs';
@@ -568,27 +571,27 @@ app.post('/api/edit', async (req, res) => {
       return res.status(400).json({ success: false, message: 'No screen HTML to edit. Provide currentHtml or valid jobId+screenIndex.' });
     }
 
-    const editPrompt = `You are an expert mobile UI editor. The user wants to modify a mobile app screen.
+    const editPrompt = `You are a SURGICAL mobile UI editor. You make MINIMAL targeted edits to HTML.
 
-Current screen HTML (this is what the user sees):
+Current screen HTML:
 \`\`\`html
-${screenHtml.substring(0, 6000)}
+${screenHtml}
 \`\`\`
 
-User instruction: "${instruction}"
+User wants: "${instruction}"
 
-RULES:
-- Return the COMPLETE modified HTML (not a diff/patch)
-- Only change what the user asked for
-- Keep all existing structure, classes, and styles intact
-- If they ask to change colors, update the inline styles and CSS classes
-- If they ask to add elements, add them in logical positions
-- If they ask to remove elements, remove them cleanly
-- Maintain the dark theme aesthetic (bg: #050507, text: white)
-- Keep all data-af-* attributes and data bindings
-- Return ONLY the HTML, no explanation or markdown wrapping`;
+CRITICAL RULES:
+1. Return the COMPLETE HTML — every single line, top to bottom. Do NOT omit anything.
+2. ONLY modify the specific thing the user asked for. Change NOTHING else.
+3. DO NOT remove any elements (nav bars, buttons, sections, icons) unless explicitly asked.
+4. DO NOT change colors/styles of elements the user didn't mention.
+5. DO NOT shorten, summarize, or simplify the HTML. Return it at FULL length.
+6. Keep ALL bottom navigation bars, headers, floating buttons exactly as they are.
+7. Keep ALL inline styles, classes, data attributes, onclick handlers intact.
+8. If the HTML is long, that's fine — return ALL of it. Never truncate.
+9. Return ONLY raw HTML. No markdown, no \`\`\`, no explanation.`;
 
-    const editedHtml = await aiChat(editPrompt, instruction, 8000);
+    const editedHtml = await aiChat(editPrompt, instruction, 16000);
     
     // Clean up response — extract HTML if wrapped
     let cleanHtml = editedHtml;
@@ -1092,6 +1095,16 @@ app.get('/api/usage', (req, res) => {
   res.json({ ...usage, limit: DAILY_FREE_LIMIT });
 });
 
+// ─── WHATSAPP BOT ────────────────────────────────────────────────────────────
+app.use('/api/whatsapp', createWhatsAppRoutes());
+
+// Set WhatsApp bot base URL from Cloudflare tunnel
+const tunnelUrl = process.env.TUNNEL_URL || '';
+if (tunnelUrl) setBaseUrl(tunnelUrl);
+
+// ─── META WHATSAPP CLOUD API ─────────────────────────────────────────────────
+app.use('/api/meta', metaWebhook);
+
 // Health check
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', version: '4.0', uptime: process.uptime() });
@@ -1145,6 +1158,123 @@ app.post('/api/deploy-preview', async (req, res) => {
     console.error('[Deploy Error]', err.message);
     res.status(500).json({ success: false, message: err.message });
   }
+});
+
+// ─── BUILD APK (EAS Cloud Build) ─────────────────────────────────────────────
+import { execSync, spawn } from 'child_process';
+
+interface ApkBuild {
+  id: string;
+  status: 'preparing' | 'building' | 'done' | 'error';
+  message: string;
+  artifactUrl?: string;
+  startedAt: number;
+}
+const apkBuilds = new Map<string, ApkBuild>();
+
+app.post('/api/build-apk', async (req, res) => {
+  try {
+    const { appName, screens, description, category, blueprint } = req.body;
+    if (!screens || screens.length === 0) {
+      return res.status(400).json({ success: false, message: 'No screens to build' });
+    }
+
+    const buildId = randomUUID();
+    const build: ApkBuild = { id: buildId, status: 'preparing', message: 'Assembling React Native project...', startedAt: Date.now() };
+    apkBuilds.set(buildId, build);
+
+    // Return immediately
+    res.json({ success: true, buildId, message: 'APK build started' });
+
+    // Background build process
+    (async () => {
+      try {
+        // Step 1: Get RN export
+        const { assembleExpoProject } = await import('./rn-assembler.ts');
+        const files = assembleExpoProject({
+          appName: appName || 'MyApp',
+          appSlug: (appName || 'myapp').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          description: description || '',
+          category: category || 'productivity',
+          screens: screens.map((s: any, i: number) => ({
+            name: s.name || `Screen${i}`,
+            type: 'dashboard',
+            blueprint: s.name?.toLowerCase() || 'home',
+          })),
+          blueprint: blueprint || {},
+        });
+
+        // Step 2: Write to temp dir
+        const tmpDir = `/tmp/apk-build-${buildId}`;
+        const fs = await import('fs');
+        const path = await import('path');
+        
+        fs.mkdirSync(tmpDir, { recursive: true });
+        for (const [filePath, content] of Object.entries(files)) {
+          const fullPath = path.join(tmpDir, filePath);
+          fs.mkdirSync(path.dirname(fullPath), { recursive: true });
+          fs.writeFileSync(fullPath, content as string);
+        }
+
+        // Step 3: Generate placeholder assets
+        const assetsDir = path.join(tmpDir, 'assets');
+        fs.mkdirSync(assetsDir, { recursive: true });
+        // Copy existing placeholder assets or create minimal PNGs
+        const placeholderPng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==', 'base64');
+        for (const asset of ['icon.png', 'adaptive-icon.png', 'splash.png', 'favicon.png']) {
+          fs.writeFileSync(path.join(assetsDir, asset), placeholderPng);
+        }
+
+        build.status = 'building';
+        build.message = 'Installing dependencies & building APK via EAS (~5-8 min)...';
+
+        // Step 4: Install deps and run EAS build
+        execSync('npm install', { cwd: tmpDir, stdio: 'pipe', timeout: 120000 });
+
+        // Run EAS build
+        const result = execSync(
+          'npx eas build --platform android --profile preview --non-interactive --json 2>&1',
+          { cwd: tmpDir, stdio: 'pipe', timeout: 600000, env: { ...process.env, EXPO_TOKEN: process.env.EXPO_TOKEN } }
+        ).toString();
+
+        // Parse result for artifact URL
+        try {
+          const parsed = JSON.parse(result);
+          if (parsed[0]?.artifacts?.buildUrl) {
+            build.status = 'done';
+            build.artifactUrl = parsed[0].artifacts.buildUrl;
+            build.message = 'APK ready for download!';
+          } else {
+            build.status = 'done';
+            build.message = 'Build submitted to EAS. Check expo.dev for the APK.';
+          }
+        } catch {
+          // EAS might output non-JSON, check for URL pattern
+          const urlMatch = result.match(/https:\/\/expo\.dev\/artifacts\/[^\s]+/);
+          if (urlMatch) {
+            build.status = 'done';
+            build.artifactUrl = urlMatch[0];
+            build.message = 'APK ready for download!';
+          } else {
+            build.status = 'done';
+            build.message = 'Build submitted. Check expo.dev dashboard for status.';
+          }
+        }
+      } catch (err: any) {
+        build.status = 'error';
+        build.message = err.message || 'Build failed';
+        console.error('[APK Build Error]', err.message);
+      }
+    })();
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+app.get('/api/build-apk/:buildId', (req, res) => {
+  const build = apkBuilds.get(req.params.buildId);
+  if (!build) return res.status(404).json({ success: false, message: 'Build not found' });
+  res.json({ success: true, ...build, elapsed: Math.round((Date.now() - build.startedAt) / 1000) });
 });
 
 // ─── START ───────────────────────────────────────────────────────────────────

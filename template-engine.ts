@@ -184,11 +184,15 @@ export function assembleFullApp(
   function extractBody(html: string): string {
     // If it has a <body>, extract just the body content
     const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-    if (bodyMatch) return bodyMatch[1].trim();
-    // If it has the base-wrapper structure, extract the main content div
-    const mainMatch = html.match(/<div class="max-w-\[430px\][^"]*">([\s\S]*)<\/div>\s*<\/body>/i);
-    if (mainMatch) return mainMatch[1].trim();
-    return html; // Already content-only
+    let content = bodyMatch ? bodyMatch[1].trim() : html;
+    // Strip fake phone status bar (9:41 time, wifi, battery icons)
+    content = content.replace(/<!-- Status Bar -->[\s\S]*?<\/div>\s*<\/div>/i, '');
+    content = content.replace(/<div[^>]*class="fixed top-0[^"]*z-50 h-11[^"]*"[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi, '');
+    // Strip phone-frame max-width wrapper
+    content = content.replace(/<div class="max-w-\[430px\][^"]*">/gi, '<div style="max-width:100%;margin:0 auto;">');
+    // Remove top padding meant for fake status bar
+    content = content.replace(/padding-top:\s*(?:44|48|52)px/gi, 'padding-top:16px');
+    return content;
   }
 
   // Build screen HTML with data-screen attributes

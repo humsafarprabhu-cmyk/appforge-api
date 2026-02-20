@@ -3,7 +3,10 @@
  * Every input is validated. Every error is structured.
  */
 import { z } from 'zod';
-import { Request, Response, NextFunction } from 'express';
+import express from 'express';
+type Request = express.Request;
+type Response = express.Response;
+type NextFunction = express.NextFunction;
 
 // ─── ERROR CODES ────────────────────────────────────────────────────────────
 export const ErrorCode = {

@@ -2,7 +2,10 @@
  * Per-app rate limiting with sliding window.
  * In-memory for now — swap to Redis for multi-instance.
  */
-import { Request, Response, NextFunction } from 'express';
+import express from 'express';
+type Request = express.Request;
+type Response = express.Response;
+type NextFunction = express.NextFunction;
 import { apiError, ErrorCode } from './validate.ts';
 
 interface RateBucket {

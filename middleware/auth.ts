@@ -7,7 +7,10 @@
  * User: can CRUD own data, read shared data
  * Guest: read-only access to public data
  */
-import { Request, Response, NextFunction } from 'express';
+import express from 'express';
+type Request = express.Request;
+type Response = express.Response;
+type NextFunction = express.NextFunction;
 import { createClient } from '@supabase/supabase-js';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';

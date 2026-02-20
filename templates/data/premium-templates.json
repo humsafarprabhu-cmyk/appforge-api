@@ -1,0 +1,1776 @@
+[
+  {
+    "id": "expense-tracker",
+    "name": "Expense Tracker",
+    "description": "Track daily expenses, set budgets, view spending charts with category breakdowns",
+    "category": "finance",
+    "tags": [
+      "expense",
+      "budget",
+      "money",
+      "spending",
+      "tracker",
+      "finance",
+      "kharcha"
+    ],
+    "matchKeywords": [
+      "expense",
+      "spending",
+      "budget",
+      "money tracker",
+      "where my money goes",
+      "track expenses",
+      "daily expenses",
+      "monthly budget",
+      "paisa tracker",
+      "kharcha app",
+      "kharcha tracker",
+      "paise kahan gaye",
+      "expense manager",
+      "money manager",
+      "spend tracker",
+      "budget app",
+      "budget planner"
+    ],
+    "screens": [
+      "Dashboard",
+      "Add Expense",
+      "Categories",
+      "Charts",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "An expense tracker app with daily spending log, category-wise budgets, monthly charts, and savings goals"
+  },
+  {
+    "id": "habit-tracker",
+    "name": "Habit Tracker",
+    "description": "Build daily habits with streaks, reminders, and progress visualization",
+    "category": "daily-life",
+    "tags": [
+      "habit",
+      "routine",
+      "streak",
+      "daily",
+      "tracker",
+      "discipline"
+    ],
+    "matchKeywords": [
+      "habit tracker",
+      "daily habits",
+      "habit app",
+      "routine tracker",
+      "streak app",
+      "build habits",
+      "habit builder",
+      "daily routine",
+      "morning routine",
+      "aadat tracker",
+      "discipline app",
+      "21 day challenge",
+      "routine app"
+    ],
+    "screens": [
+      "Today",
+      "All Habits",
+      "Streaks",
+      "Stats",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A habit tracker with daily check-ins, streak counting, visual progress calendars, and motivational stats"
+  },
+  {
+    "id": "fitness-tracker",
+    "name": "Fitness Tracker",
+    "description": "Log workouts, track progress, view exercise history and body stats",
+    "category": "health",
+    "tags": [
+      "fitness",
+      "gym",
+      "workout",
+      "exercise",
+      "body",
+      "health"
+    ],
+    "matchKeywords": [
+      "fitness app",
+      "gym app",
+      "workout tracker",
+      "gym tracker",
+      "exercise app",
+      "fitness tracker",
+      "body tracker",
+      "workout log",
+      "gym log",
+      "weight training",
+      "gym buddy",
+      "bodybuilding app",
+      "muscle app",
+      "kasar app"
+    ],
+    "screens": [
+      "Dashboard",
+      "Log Workout",
+      "Exercises",
+      "Progress",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A fitness tracker with workout logging, exercise library, progress charts for weight/reps, and body measurement tracking"
+  },
+  {
+    "id": "notes-app",
+    "name": "Notes App",
+    "description": "Quick notes with folders, search, markdown support, and color coding",
+    "category": "utility",
+    "tags": [
+      "notes",
+      "memo",
+      "write",
+      "text",
+      "notebook",
+      "markdown"
+    ],
+    "matchKeywords": [
+      "notes app",
+      "note taking",
+      "quick notes",
+      "memo app",
+      "notebook",
+      "write notes",
+      "note pad",
+      "notepad app",
+      "padhai notes",
+      "study notes",
+      "class notes",
+      "likhna app",
+      "notes manager"
+    ],
+    "screens": [
+      "All Notes",
+      "Editor",
+      "Folders",
+      "Search",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A notes app with rich text editing, folder organization, color labels, search, and markdown support"
+  },
+  {
+    "id": "todo-app",
+    "name": "Todo App",
+    "description": "Manage tasks with priorities, due dates, lists, and completion tracking",
+    "category": "daily-life",
+    "tags": [
+      "todo",
+      "task",
+      "checklist",
+      "productivity",
+      "planner"
+    ],
+    "matchKeywords": [
+      "todo app",
+      "task manager",
+      "to do list",
+      "task app",
+      "checklist",
+      "kaam list",
+      "task tracker",
+      "daily tasks",
+      "work list",
+      "pending tasks",
+      "task planner",
+      "productivity app"
+    ],
+    "screens": [
+      "Today",
+      "Add Task",
+      "Lists",
+      "Calendar",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A todo app with task lists, priorities, due dates, recurring tasks, and daily planner view"
+  },
+  {
+    "id": "calorie-counter",
+    "name": "Calorie Counter",
+    "description": "Track meals, count calories, monitor macros and nutrition goals",
+    "category": "health",
+    "tags": [
+      "calorie",
+      "food",
+      "diet",
+      "nutrition",
+      "macro",
+      "health"
+    ],
+    "matchKeywords": [
+      "calorie counter",
+      "calorie tracker",
+      "food tracker",
+      "diet app",
+      "diet plan app",
+      "calorie app",
+      "nutrition tracker",
+      "macro tracker",
+      "khana tracker",
+      "food diary",
+      "meal tracker",
+      "weight loss app",
+      "diet plan"
+    ],
+    "screens": [
+      "Dashboard",
+      "Log Meal",
+      "Food Database",
+      "Progress",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A calorie counter with meal logging, food database, macro tracking, daily/weekly goals, and weight progress charts"
+  },
+  {
+    "id": "water-tracker",
+    "name": "Water Tracker",
+    "description": "Stay hydrated with daily water intake tracking and reminders",
+    "category": "health",
+    "tags": [
+      "water",
+      "hydration",
+      "drink",
+      "health",
+      "reminder"
+    ],
+    "matchKeywords": [
+      "water tracker",
+      "water reminder",
+      "hydration app",
+      "drink water",
+      "paani tracker",
+      "water intake",
+      "hydration tracker",
+      "daily water",
+      "water app"
+    ],
+    "screens": [
+      "Today",
+      "Log Water",
+      "History",
+      "Stats",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A water tracker with animated glass filling, daily goals, intake history, and hydration streaks"
+  },
+  {
+    "id": "emi-calculator",
+    "name": "EMI Calculator",
+    "description": "Calculate EMI for loans with amortization schedule and comparison",
+    "category": "finance",
+    "tags": [
+      "emi",
+      "loan",
+      "calculator",
+      "interest",
+      "bank",
+      "mortgage"
+    ],
+    "matchKeywords": [
+      "emi calculator",
+      "loan calculator",
+      "emi app",
+      "home loan emi",
+      "car loan emi",
+      "personal loan",
+      "loan emi",
+      "interest calculator",
+      "emi kitna hoga",
+      "loan kitna",
+      "mortgage calculator",
+      "emi calculate"
+    ],
+    "screens": [
+      "Calculator",
+      "Schedule",
+      "Compare",
+      "Saved",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "An EMI calculator with loan amount/rate/tenure inputs, amortization schedule, pie charts, and loan comparison"
+  },
+  {
+    "id": "recipe-book",
+    "name": "Recipe Book",
+    "description": "Save and organize your favorite recipes with ingredients and steps",
+    "category": "daily-life",
+    "tags": [
+      "recipe",
+      "cooking",
+      "food",
+      "kitchen",
+      "meal"
+    ],
+    "matchKeywords": [
+      "recipe app",
+      "cooking app",
+      "recipe book",
+      "recipe manager",
+      "khana banane ki recipe",
+      "recipe save",
+      "cookbook",
+      "meal planner",
+      "recipe collection",
+      "food recipe",
+      "indian recipe"
+    ],
+    "screens": [
+      "Browse",
+      "Recipe Detail",
+      "Add Recipe",
+      "Categories",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A recipe book app with recipe cards, ingredient lists, step-by-step instructions, categories, and search"
+  },
+  {
+    "id": "cricket-scorer",
+    "name": "Cricket Scorer",
+    "description": "Score cricket matches ball by ball with full scorecard and stats",
+    "category": "sports",
+    "tags": [
+      "cricket",
+      "score",
+      "match",
+      "sports",
+      "scorecard"
+    ],
+    "matchKeywords": [
+      "cricket scorer",
+      "cricket app",
+      "cricket score",
+      "gully cricket",
+      "match scorer",
+      "cricket scorecard",
+      "score keeper",
+      "cricket scoring app",
+      "ball by ball",
+      "cricket match app"
+    ],
+    "screens": [
+      "New Match",
+      "Scoring",
+      "Scorecard",
+      "Stats",
+      "History"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A cricket scoring app with ball-by-ball scoring, live scorecard, batting/bowling stats, and match history"
+  },
+  {
+    "id": "flashcard-app",
+    "name": "Flashcard App",
+    "description": "Create and study flashcards with spaced repetition for better learning",
+    "category": "education",
+    "tags": [
+      "flashcard",
+      "study",
+      "learn",
+      "memorize",
+      "spaced-repetition"
+    ],
+    "matchKeywords": [
+      "flashcard app",
+      "flashcards",
+      "study cards",
+      "revision app",
+      "padhai app",
+      "exam prep",
+      "memorize app",
+      "learning app",
+      "spaced repetition",
+      "study app",
+      "revision cards"
+    ],
+    "screens": [
+      "Decks",
+      "Study",
+      "Create Card",
+      "Stats",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A flashcard app with deck management, spaced repetition algorithm, flip animations, and study statistics"
+  },
+  {
+    "id": "gpa-calculator",
+    "name": "GPA Calculator",
+    "description": "Calculate CGPA/SGPA with semester-wise tracking and grade management",
+    "category": "education",
+    "tags": [
+      "gpa",
+      "cgpa",
+      "sgpa",
+      "grade",
+      "academic",
+      "college"
+    ],
+    "matchKeywords": [
+      "gpa calculator",
+      "cgpa calculator",
+      "sgpa calculator",
+      "grade calculator",
+      "college gpa",
+      "percentage to cgpa",
+      "cgpa kitna hai",
+      "academic tracker",
+      "semester gpa",
+      "marks calculator"
+    ],
+    "screens": [
+      "Calculator",
+      "Semesters",
+      "Add Course",
+      "Summary",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A GPA calculator with semester management, course credits, grade conversion, CGPA trends, and grade scale options"
+  },
+  {
+    "id": "attendance-tracker",
+    "name": "Attendance Tracker",
+    "description": "Track class attendance percentage and know when you can skip",
+    "category": "education",
+    "tags": [
+      "attendance",
+      "class",
+      "college",
+      "bunking",
+      "percentage"
+    ],
+    "matchKeywords": [
+      "attendance tracker",
+      "attendance app",
+      "class attendance",
+      "bunk calculator",
+      "kitne bunk mar sakte",
+      "attendance percentage",
+      "college attendance",
+      "proxy attendance",
+      "75 percent attendance",
+      "class tracker"
+    ],
+    "screens": [
+      "Dashboard",
+      "Mark Attendance",
+      "Subjects",
+      "Calendar",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "An attendance tracker showing percentage per subject, bunk allowance calculator, calendar view, and alerts for low attendance"
+  },
+  {
+    "id": "invoice-generator",
+    "name": "Invoice Generator",
+    "description": "Create professional invoices, track payments, manage clients",
+    "category": "business",
+    "tags": [
+      "invoice",
+      "billing",
+      "payment",
+      "client",
+      "business",
+      "gst"
+    ],
+    "matchKeywords": [
+      "invoice app",
+      "invoice generator",
+      "bill maker",
+      "invoice maker",
+      "billing app",
+      "gst invoice",
+      "bill banao",
+      "invoice create",
+      "professional invoice",
+      "freelance invoice",
+      "bill generator"
+    ],
+    "screens": [
+      "Invoices",
+      "Create Invoice",
+      "Clients",
+      "Payments",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "An invoice generator with client management, item line entries, tax calculations, PDF export, and payment tracking"
+  },
+  {
+    "id": "time-tracker",
+    "name": "Time Tracker",
+    "description": "Track time spent on projects and tasks with detailed reports",
+    "category": "professional",
+    "tags": [
+      "time",
+      "tracker",
+      "project",
+      "hours",
+      "productivity",
+      "freelance"
+    ],
+    "matchKeywords": [
+      "time tracker",
+      "time tracking app",
+      "hours tracker",
+      "project timer",
+      "work hours",
+      "freelance timer",
+      "time log",
+      "billable hours",
+      "pomodoro",
+      "time management"
+    ],
+    "screens": [
+      "Timer",
+      "Projects",
+      "Log Entry",
+      "Reports",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A time tracker with start/stop timer, project categorization, manual entry, weekly reports, and billable hours summary"
+  },
+  {
+    "id": "split-bills",
+    "name": "Split Bills",
+    "description": "Split expenses with friends, track who owes whom, settle debts",
+    "category": "finance",
+    "tags": [
+      "split",
+      "bills",
+      "friends",
+      "group",
+      "expense",
+      "settle"
+    ],
+    "matchKeywords": [
+      "split bills",
+      "splitwise",
+      "bill split app",
+      "hisaab app",
+      "who owes who",
+      "group expense",
+      "friend expense",
+      "split karo",
+      "paisa baant",
+      "trip expense",
+      "roommate expense",
+      "split bill calculator"
+    ],
+    "screens": [
+      "Groups",
+      "Add Expense",
+      "Balances",
+      "Activity",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A bill splitting app with group management, expense splitting, balance calculation, settlement suggestions, and activity log"
+  },
+  {
+    "id": "budget-planner",
+    "name": "Budget Planner",
+    "description": "Plan monthly budgets with envelope method and spending alerts",
+    "category": "finance",
+    "tags": [
+      "budget",
+      "planner",
+      "monthly",
+      "savings",
+      "envelope"
+    ],
+    "matchKeywords": [
+      "budget planner",
+      "monthly budget",
+      "budget app",
+      "salary planner",
+      "income expense",
+      "budget banao",
+      "paisa plan",
+      "financial planner",
+      "50 30 20 rule",
+      "budget manager"
+    ],
+    "screens": [
+      "Overview",
+      "Create Budget",
+      "Categories",
+      "Transactions",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A budget planner with envelope budgeting, income tracking, category limits, spending alerts, and monthly overview"
+  },
+  {
+    "id": "savings-goals",
+    "name": "Savings Goals",
+    "description": "Set savings targets and track progress towards your financial goals",
+    "category": "finance",
+    "tags": [
+      "savings",
+      "goals",
+      "target",
+      "money",
+      "piggy-bank"
+    ],
+    "matchKeywords": [
+      "savings app",
+      "savings goal",
+      "money saving",
+      "bachao app",
+      "saving tracker",
+      "piggy bank app",
+      "goal tracker",
+      "save money",
+      "paisa bachao",
+      "savings target",
+      "financial goals"
+    ],
+    "screens": [
+      "Goals",
+      "Add Goal",
+      "Progress",
+      "Add Money",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A savings goals app with goal creation, visual progress bars, contribution tracking, and milestone celebrations"
+  },
+  {
+    "id": "investment-tracker",
+    "name": "Investment Tracker",
+    "description": "Track stocks, mutual funds, FDs and monitor portfolio performance",
+    "category": "finance",
+    "tags": [
+      "investment",
+      "stocks",
+      "mutual-fund",
+      "portfolio",
+      "sip"
+    ],
+    "matchKeywords": [
+      "investment tracker",
+      "stock tracker",
+      "mutual fund tracker",
+      "portfolio app",
+      "sip tracker",
+      "share market app",
+      "investment app",
+      "fd tracker",
+      "stock portfolio",
+      "nivesh app",
+      "paisa invest"
+    ],
+    "screens": [
+      "Portfolio",
+      "Add Investment",
+      "Performance",
+      "Dividends",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "An investment tracker with portfolio overview, SIP tracking, returns calculation, asset allocation chart, and dividend log"
+  },
+  {
+    "id": "period-tracker",
+    "name": "Period Tracker",
+    "description": "Track menstrual cycle, predict periods, log symptoms and moods",
+    "category": "health",
+    "tags": [
+      "period",
+      "menstrual",
+      "cycle",
+      "women",
+      "health",
+      "fertility"
+    ],
+    "matchKeywords": [
+      "period tracker",
+      "period app",
+      "menstrual tracker",
+      "cycle tracker",
+      "period calendar",
+      "period predict",
+      "mc tracker",
+      "periods kab aayenge",
+      "ovulation tracker",
+      "fertility tracker",
+      "women health app"
+    ],
+    "screens": [
+      "Calendar",
+      "Log Day",
+      "Predictions",
+      "Insights",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A period tracker with cycle calendar, symptom logging, period predictions, mood tracking, and health insights"
+  },
+  {
+    "id": "meditation-app",
+    "name": "Meditation App",
+    "description": "Guided breathing exercises, meditation timer, and mindfulness streaks",
+    "category": "health",
+    "tags": [
+      "meditation",
+      "mindfulness",
+      "breathing",
+      "calm",
+      "relax",
+      "yoga"
+    ],
+    "matchKeywords": [
+      "meditation app",
+      "calm app",
+      "breathing app",
+      "mindfulness",
+      "relax app",
+      "meditation timer",
+      "dhyan app",
+      "pranayam app",
+      "stress relief",
+      "anxiety app",
+      "sleep meditation",
+      "yoga app"
+    ],
+    "screens": [
+      "Home",
+      "Breathe",
+      "Timer",
+      "History",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A meditation app with breathing exercises, customizable timer, ambient sounds option, session history, and streak tracking"
+  },
+  {
+    "id": "journal-app",
+    "name": "Journal App",
+    "description": "Daily journaling with mood tags, prompts, and beautiful entries",
+    "category": "creative",
+    "tags": [
+      "journal",
+      "diary",
+      "writing",
+      "personal",
+      "daily"
+    ],
+    "matchKeywords": [
+      "journal app",
+      "diary app",
+      "daily diary",
+      "personal journal",
+      "writing app",
+      "diary likhna",
+      "roznamcha",
+      "dear diary app",
+      "daily journal",
+      "life journal"
+    ],
+    "screens": [
+      "Entries",
+      "Write",
+      "Calendar",
+      "Moods",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A journal app with daily entries, mood tagging, writing prompts, calendar view, and word count stats"
+  },
+  {
+    "id": "mood-tracker",
+    "name": "Mood Tracker",
+    "description": "Track daily moods, identify patterns, log emotions and activities",
+    "category": "creative",
+    "tags": [
+      "mood",
+      "emotions",
+      "mental-health",
+      "feelings",
+      "tracker"
+    ],
+    "matchKeywords": [
+      "mood tracker",
+      "mood app",
+      "emotion tracker",
+      "how am i feeling",
+      "mental health app",
+      "mood diary",
+      "mood log",
+      "feelings app",
+      "mood journal",
+      "emotional health"
+    ],
+    "screens": [
+      "Today",
+      "Log Mood",
+      "Calendar",
+      "Insights",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A mood tracker with emoji-based mood logging, activity correlation, calendar heatmap, mood insights, and patterns"
+  },
+  {
+    "id": "gratitude-diary",
+    "name": "Gratitude Diary",
+    "description": "Daily gratitude practice with prompts, photos, and positive reflections",
+    "category": "creative",
+    "tags": [
+      "gratitude",
+      "thankful",
+      "positive",
+      "mindfulness",
+      "diary"
+    ],
+    "matchKeywords": [
+      "gratitude app",
+      "gratitude diary",
+      "thankful app",
+      "positive thinking app",
+      "gratitude journal",
+      "daily gratitude",
+      "blessings app",
+      "shukrana app"
+    ],
+    "screens": [
+      "Today",
+      "Write Gratitude",
+      "Gallery",
+      "Streaks",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A gratitude diary with daily prompts, 3-things-grateful entries, photo attachment, streak tracking, and reflections"
+  },
+  {
+    "id": "grocery-list",
+    "name": "Grocery List",
+    "description": "Smart grocery lists with categories, quantities, and price estimates",
+    "category": "daily-life",
+    "tags": [
+      "grocery",
+      "shopping",
+      "list",
+      "kitchen",
+      "market"
+    ],
+    "matchKeywords": [
+      "grocery list",
+      "grocery app",
+      "shopping list",
+      "kirana list",
+      "sabzi list",
+      "market list",
+      "rashan list",
+      "grocery tracker",
+      "shopping app",
+      "kitchen list"
+    ],
+    "screens": [
+      "Lists",
+      "Add Items",
+      "Categories",
+      "History",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A grocery list app with smart categories, quantity tracking, price estimation, list sharing, and purchase history"
+  },
+  {
+    "id": "birthday-reminder",
+    "name": "Birthday Reminder",
+    "description": "Never miss birthdays and anniversaries with smart reminders",
+    "category": "daily-life",
+    "tags": [
+      "birthday",
+      "reminder",
+      "anniversary",
+      "celebration",
+      "gift"
+    ],
+    "matchKeywords": [
+      "birthday reminder",
+      "birthday app",
+      "birthday tracker",
+      "anniversary reminder",
+      "birthday calendar",
+      "janamdin yaad",
+      "birthday alert",
+      "important dates app",
+      "birthday list"
+    ],
+    "screens": [
+      "Upcoming",
+      "Add Birthday",
+      "Calendar",
+      "Gift Ideas",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A birthday reminder with upcoming birthdays, countdown, age calculator, gift idea notes, and calendar overview"
+  },
+  {
+    "id": "password-manager",
+    "name": "Password Manager",
+    "description": "Securely store and organize passwords with master key protection",
+    "category": "utility",
+    "tags": [
+      "password",
+      "security",
+      "vault",
+      "credentials",
+      "login"
+    ],
+    "matchKeywords": [
+      "password manager",
+      "password app",
+      "password save",
+      "password vault",
+      "password store",
+      "password keeper",
+      "login manager",
+      "password yaad nahi",
+      "password book"
+    ],
+    "screens": [
+      "Vault",
+      "Add Entry",
+      "Categories",
+      "Generator",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A password manager with master password, encrypted storage, password generator, categories, and search"
+  },
+  {
+    "id": "unit-converter",
+    "name": "Unit Converter",
+    "description": "Convert between units \u2014 length, weight, temperature, currency and more",
+    "category": "utility",
+    "tags": [
+      "converter",
+      "unit",
+      "measurement",
+      "calculator",
+      "conversion"
+    ],
+    "matchKeywords": [
+      "unit converter",
+      "converter app",
+      "kg to lbs",
+      "cm to inches",
+      "temperature converter",
+      "currency converter",
+      "measurement app",
+      "conversion app",
+      "unit convert",
+      "length converter"
+    ],
+    "screens": [
+      "Convert",
+      "Categories",
+      "Favorites",
+      "History",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A unit converter with all major categories, quick swap, favorites, conversion history, and clean input interface"
+  },
+  {
+    "id": "contact-manager",
+    "name": "Contact Manager",
+    "description": "Organize contacts with groups, tags, notes, and quick actions",
+    "category": "social",
+    "tags": [
+      "contact",
+      "people",
+      "address-book",
+      "networking",
+      "crm"
+    ],
+    "matchKeywords": [
+      "contact manager",
+      "contact app",
+      "address book",
+      "people manager",
+      "contact organizer",
+      "phone book app",
+      "contact list",
+      "networking app",
+      "contact notes"
+    ],
+    "screens": [
+      "Contacts",
+      "Add Contact",
+      "Groups",
+      "Search",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A contact manager with groups, tags, notes per contact, quick call/message actions, and smart search"
+  },
+  {
+    "id": "event-planner",
+    "name": "Event Planner",
+    "description": "Plan events with guest lists, budgets, tasks, and timelines",
+    "category": "social",
+    "tags": [
+      "event",
+      "party",
+      "planning",
+      "wedding",
+      "celebration"
+    ],
+    "matchKeywords": [
+      "event planner",
+      "party planner",
+      "event app",
+      "wedding planner",
+      "function planning",
+      "shaadi planning",
+      "event manager",
+      "party planning app",
+      "celebration planner"
+    ],
+    "screens": [
+      "Events",
+      "Create Event",
+      "Guest List",
+      "Budget",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "An event planner with event creation, guest list management, budget tracking, task checklist, and timeline"
+  },
+  {
+    "id": "gift-tracker",
+    "name": "Gift Tracker",
+    "description": "Track gifts given and received, wishlists, and gift ideas",
+    "category": "social",
+    "tags": [
+      "gift",
+      "wishlist",
+      "present",
+      "birthday",
+      "occasion"
+    ],
+    "matchKeywords": [
+      "gift tracker",
+      "gift app",
+      "gift ideas",
+      "wishlist app",
+      "gift list",
+      "tohfa app",
+      "gift planner",
+      "present tracker",
+      "gift manager"
+    ],
+    "screens": [
+      "Gifts",
+      "Add Gift",
+      "Wishlist",
+      "Occasions",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A gift tracker with given/received gifts, wishlists, occasion reminders, budget tracking, and gift ideas"
+  },
+  {
+    "id": "inventory-manager",
+    "name": "Inventory Manager",
+    "description": "Manage stock inventory with categories, alerts, and sales tracking",
+    "category": "business",
+    "tags": [
+      "inventory",
+      "stock",
+      "warehouse",
+      "business",
+      "product"
+    ],
+    "matchKeywords": [
+      "inventory app",
+      "stock manager",
+      "inventory tracker",
+      "dukan app",
+      "shop inventory",
+      "stock tracking",
+      "godown app",
+      "maal tracker",
+      "product inventory",
+      "stock app"
+    ],
+    "screens": [
+      "Dashboard",
+      "Add Product",
+      "Categories",
+      "Alerts",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "An inventory manager with product catalog, stock levels, low-stock alerts, category organization, and sales overview"
+  },
+  {
+    "id": "order-tracker",
+    "name": "Order Tracker",
+    "description": "Track customer orders, delivery status, and order history",
+    "category": "business",
+    "tags": [
+      "order",
+      "delivery",
+      "tracking",
+      "ecommerce",
+      "business"
+    ],
+    "matchKeywords": [
+      "order tracker",
+      "order app",
+      "delivery tracker",
+      "order management",
+      "order status",
+      "parcel tracker",
+      "business orders",
+      "customer orders",
+      "order tracking app"
+    ],
+    "screens": [
+      "Orders",
+      "Add Order",
+      "Tracking",
+      "Customers",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "An order tracker with order management, status updates, customer details, delivery tracking, and order history"
+  },
+  {
+    "id": "appointment-booking",
+    "name": "Appointment Booking",
+    "description": "Manage appointments, bookings, and client schedules",
+    "category": "business",
+    "tags": [
+      "appointment",
+      "booking",
+      "schedule",
+      "client",
+      "calendar"
+    ],
+    "matchKeywords": [
+      "appointment app",
+      "booking app",
+      "appointment manager",
+      "schedule app",
+      "client booking",
+      "appointment booking",
+      "doctor appointment",
+      "salon booking",
+      "appointment scheduler"
+    ],
+    "screens": [
+      "Calendar",
+      "New Booking",
+      "Clients",
+      "Today",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "An appointment booking app with calendar view, client management, time slots, reminders, and booking history"
+  },
+  {
+    "id": "customer-feedback",
+    "name": "Customer Feedback",
+    "description": "Collect and analyze customer feedback with ratings and reports",
+    "category": "business",
+    "tags": [
+      "feedback",
+      "review",
+      "rating",
+      "customer",
+      "survey"
+    ],
+    "matchKeywords": [
+      "feedback app",
+      "customer feedback",
+      "review collector",
+      "rating app",
+      "survey app",
+      "customer review",
+      "feedback form",
+      "customer satisfaction"
+    ],
+    "screens": [
+      "Dashboard",
+      "Collect",
+      "Responses",
+      "Analytics",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A customer feedback app with customizable forms, star ratings, response analytics, and trend reports"
+  },
+  {
+    "id": "meeting-notes",
+    "name": "Meeting Notes",
+    "description": "Capture meeting notes with action items, attendees, and follow-ups",
+    "category": "professional",
+    "tags": [
+      "meeting",
+      "notes",
+      "minutes",
+      "action-items",
+      "work"
+    ],
+    "matchKeywords": [
+      "meeting notes",
+      "meeting app",
+      "mom app",
+      "minutes of meeting",
+      "meeting minutes",
+      "meeting tracker",
+      "meeting summary",
+      "office meeting app",
+      "action items app"
+    ],
+    "screens": [
+      "Meetings",
+      "New Meeting",
+      "Notes",
+      "Action Items",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A meeting notes app with attendee list, agenda, real-time notes, action items with owners, and follow-up tracking"
+  },
+  {
+    "id": "crm-lite",
+    "name": "CRM Lite",
+    "description": "Simple CRM to manage leads, deals, and customer relationships",
+    "category": "business",
+    "tags": [
+      "crm",
+      "sales",
+      "leads",
+      "deals",
+      "customers"
+    ],
+    "matchKeywords": [
+      "crm app",
+      "customer management",
+      "lead tracker",
+      "sales app",
+      "deal tracker",
+      "client manager",
+      "sales pipeline",
+      "business crm",
+      "lead management"
+    ],
+    "screens": [
+      "Pipeline",
+      "Add Lead",
+      "Contacts",
+      "Deals",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A lightweight CRM with sales pipeline, lead management, deal tracking, contact notes, and activity timeline"
+  },
+  {
+    "id": "dream-log",
+    "name": "Dream Log",
+    "description": "Record dreams, identify patterns, tag themes, and track lucid dreams",
+    "category": "creative",
+    "tags": [
+      "dream",
+      "sleep",
+      "journal",
+      "lucid",
+      "subconscious"
+    ],
+    "matchKeywords": [
+      "dream journal",
+      "dream app",
+      "dream diary",
+      "dream log",
+      "sapna diary",
+      "dream tracker",
+      "lucid dream app",
+      "dream record"
+    ],
+    "screens": [
+      "Dreams",
+      "Record Dream",
+      "Themes",
+      "Patterns",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A dream journal with quick morning recording, theme tags, lucid dream marking, dream patterns, and search"
+  },
+  {
+    "id": "pomodoro-timer",
+    "name": "Pomodoro Timer",
+    "description": "Focus timer with Pomodoro technique, break reminders, and session stats",
+    "category": "utility",
+    "tags": [
+      "pomodoro",
+      "timer",
+      "focus",
+      "productivity",
+      "study"
+    ],
+    "matchKeywords": [
+      "pomodoro app",
+      "focus timer",
+      "study timer",
+      "pomodoro timer",
+      "concentration app",
+      "focus app",
+      "25 minute timer",
+      "productivity timer",
+      "padhai timer",
+      "exam study timer"
+    ],
+    "screens": [
+      "Timer",
+      "Tasks",
+      "Stats",
+      "History",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A Pomodoro timer with customizable intervals, task linking, session history, daily stats, and ambient sounds"
+  },
+  {
+    "id": "sleep-tracker",
+    "name": "Sleep Tracker",
+    "description": "Track sleep patterns, quality, and build better sleep habits",
+    "category": "health",
+    "tags": [
+      "sleep",
+      "tracker",
+      "bedtime",
+      "health",
+      "rest"
+    ],
+    "matchKeywords": [
+      "sleep tracker",
+      "sleep app",
+      "neend tracker",
+      "sleep log",
+      "bedtime app",
+      "sleep quality",
+      "sleep cycle",
+      "sleep monitor",
+      "insomnia app"
+    ],
+    "screens": [
+      "Dashboard",
+      "Log Sleep",
+      "Trends",
+      "Tips",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A sleep tracker with bedtime/wake logging, sleep quality ratings, weekly trends, sleep debt calculation, and tips"
+  },
+  {
+    "id": "blood-pressure",
+    "name": "Blood Pressure Log",
+    "description": "Track blood pressure readings with charts and health insights",
+    "category": "health",
+    "tags": [
+      "blood-pressure",
+      "bp",
+      "health",
+      "medical",
+      "heart"
+    ],
+    "matchKeywords": [
+      "bp tracker",
+      "blood pressure app",
+      "bp app",
+      "blood pressure log",
+      "bp monitor",
+      "bp reading app",
+      "heart health app",
+      "hypertension tracker"
+    ],
+    "screens": [
+      "Dashboard",
+      "Add Reading",
+      "History",
+      "Charts",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A blood pressure tracker with reading log, systolic/diastolic charts, averages, risk indicators, and medication reminders"
+  },
+  {
+    "id": "weight-tracker",
+    "name": "Weight Tracker",
+    "description": "Track weight loss/gain journey with goals and progress photos",
+    "category": "health",
+    "tags": [
+      "weight",
+      "fitness",
+      "body",
+      "diet",
+      "goal"
+    ],
+    "matchKeywords": [
+      "weight tracker",
+      "weight loss app",
+      "vajan tracker",
+      "weight gain app",
+      "body weight app",
+      "weight log",
+      "weight monitor",
+      "motapa app",
+      "weight goal"
+    ],
+    "screens": [
+      "Dashboard",
+      "Log Weight",
+      "Progress",
+      "Goals",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A weight tracker with daily logging, goal setting, progress chart, BMI calculator, and milestone celebrations"
+  },
+  {
+    "id": "study-planner",
+    "name": "Study Planner",
+    "description": "Plan study schedules, track subjects, manage exam preparation",
+    "category": "education",
+    "tags": [
+      "study",
+      "planner",
+      "exam",
+      "schedule",
+      "education"
+    ],
+    "matchKeywords": [
+      "study planner",
+      "study app",
+      "exam planner",
+      "padhai plan",
+      "study schedule",
+      "exam prep app",
+      "timetable app",
+      "study timetable",
+      "board exam app",
+      "jee preparation"
+    ],
+    "screens": [
+      "Schedule",
+      "Add Session",
+      "Subjects",
+      "Progress",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A study planner with subject-wise scheduling, daily targets, progress tracking, revision reminders, and study stats"
+  },
+  {
+    "id": "vocabulary-builder",
+    "name": "Vocabulary Builder",
+    "description": "Learn new words daily with quizzes, examples, and spaced repetition",
+    "category": "education",
+    "tags": [
+      "vocabulary",
+      "words",
+      "english",
+      "learning",
+      "quiz"
+    ],
+    "matchKeywords": [
+      "vocabulary app",
+      "word app",
+      "english words",
+      "vocab builder",
+      "word of the day",
+      "english improve",
+      "vocabulary improve",
+      "shabd app",
+      "word meaning app",
+      "english seekhna"
+    ],
+    "screens": [
+      "Word of Day",
+      "Word List",
+      "Quiz",
+      "Favorites",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A vocabulary builder with daily words, definitions, usage examples, quiz mode, and progress tracking"
+  },
+  {
+    "id": "reading-list",
+    "name": "Reading List",
+    "description": "Track books you read, want to read, and reading goals",
+    "category": "creative",
+    "tags": [
+      "reading",
+      "books",
+      "library",
+      "bookshelf",
+      "literature"
+    ],
+    "matchKeywords": [
+      "reading app",
+      "book tracker",
+      "reading list",
+      "book app",
+      "kitab app",
+      "reading tracker",
+      "book log",
+      "goodreads alternative",
+      "book list",
+      "reading goal"
+    ],
+    "screens": [
+      "Library",
+      "Add Book",
+      "Currently Reading",
+      "Stats",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A reading list app with book catalog, reading progress, yearly goals, ratings, and reading statistics"
+  },
+  {
+    "id": "daily-affirmations",
+    "name": "Daily Affirmations",
+    "description": "Positive affirmations with daily reminders and personal collection",
+    "category": "creative",
+    "tags": [
+      "affirmation",
+      "positive",
+      "motivation",
+      "mindset",
+      "self-help"
+    ],
+    "matchKeywords": [
+      "affirmation app",
+      "motivation app",
+      "positive quotes",
+      "daily motivation",
+      "self help app",
+      "motivational app",
+      "good vibes app",
+      "positivity app",
+      "inspiration app"
+    ],
+    "screens": [
+      "Today",
+      "Browse",
+      "Favorites",
+      "Create",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A daily affirmations app with curated affirmations, categories, favorites, custom affirmations, and reminder scheduling"
+  },
+  {
+    "id": "workout-planner",
+    "name": "Workout Planner",
+    "description": "Pre-made workout routines with exercise guides and tracking",
+    "category": "health",
+    "tags": [
+      "workout",
+      "exercise",
+      "routine",
+      "gym",
+      "fitness-plan"
+    ],
+    "matchKeywords": [
+      "workout plan",
+      "gym routine",
+      "exercise plan",
+      "workout app",
+      "gym plan",
+      "body building plan",
+      "home workout",
+      "chest day app",
+      "leg day app",
+      "gym routine app"
+    ],
+    "screens": [
+      "Plans",
+      "Today's Workout",
+      "Exercises",
+      "Log",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "high",
+    "prompt": "A workout planner with pre-built routines, exercise library with descriptions, set/rep tracking, and rest timers"
+  },
+  {
+    "id": "pet-care",
+    "name": "Pet Care",
+    "description": "Track pet health, feeding, walks, and vet appointments",
+    "category": "daily-life",
+    "tags": [
+      "pet",
+      "dog",
+      "cat",
+      "animal",
+      "care"
+    ],
+    "matchKeywords": [
+      "pet app",
+      "dog app",
+      "cat app",
+      "pet tracker",
+      "pet care app",
+      "dog walker app",
+      "pet health",
+      "pet food tracker",
+      "vet appointment"
+    ],
+    "screens": [
+      "My Pets",
+      "Add Activity",
+      "Health Log",
+      "Schedule",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A pet care app with pet profiles, feeding schedule, walk tracking, vet appointment reminders, and health log"
+  },
+  {
+    "id": "plant-care",
+    "name": "Plant Care",
+    "description": "Track watering schedules, sunlight needs, and plant health",
+    "category": "daily-life",
+    "tags": [
+      "plant",
+      "garden",
+      "watering",
+      "green",
+      "nature"
+    ],
+    "matchKeywords": [
+      "plant app",
+      "plant care",
+      "garden app",
+      "watering reminder",
+      "plant tracker",
+      "indoor plants app",
+      "gardening app",
+      "podha app",
+      "plant watering app"
+    ],
+    "screens": [
+      "My Plants",
+      "Add Plant",
+      "Schedule",
+      "Care Tips",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "low",
+    "prompt": "A plant care app with plant profiles, watering reminders, sunlight tracking, care guides, and growth photos"
+  },
+  {
+    "id": "daily-planner",
+    "name": "Daily Planner",
+    "description": "Plan your day hour by hour with time blocks, priorities, and daily reflection",
+    "category": "daily-life",
+    "tags": [
+      "planner",
+      "schedule",
+      "daily",
+      "time-block",
+      "productivity"
+    ],
+    "matchKeywords": [
+      "daily planner",
+      "day planner",
+      "time block app",
+      "schedule planner",
+      "din ka plan",
+      "daily schedule",
+      "hour by hour planner",
+      "day organizer",
+      "plan my day",
+      "aaj ka plan"
+    ],
+    "screens": [
+      "Day View",
+      "Add Block",
+      "Weekly",
+      "Reflection",
+      "Settings"
+    ],
+    "isPremiumOnly": false,
+    "estimatedUsers": "medium",
+    "prompt": "A daily planner with hourly time blocks, color-coded categories, weekly overview, and evening reflection journal"
+  }
+]

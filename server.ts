@@ -634,6 +634,99 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', version: '4.0', uptime: process.uptime() });
 });
 
+// ─── LIVE PREVIEW DEPLOY (Vercel) ────────────────────────────────────────────
+app.post('/api/deploy-preview', async (req, res) => {
+  try {
+    const { jobId } = req.body;
+    const job = jobs.get(jobId);
+    if (!job || job.status !== 'complete') {
+      return res.status(400).json({ success: false, message: 'Job not found or not complete' });
+    }
+
+    const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
+    if (!VERCEL_TOKEN) {
+      return res.status(500).json({ success: false, message: 'Vercel token not configured' });
+    }
+
+    const apiUrl = `${req.protocol}://${req.get('host')}`;
+    const blueprint = (job as any).blueprint;
+    const collections = blueprint?.dataModel?.collections || [];
+
+    // Generate the full app HTML
+    const appHtml = assembleFullApp(
+      job.screens.map((s, i) => ({
+        name: s.name,
+        html: s.html,
+        blueprint: (job as any).screenBlueprints?.[i] || 'dashboard-a',
+      })),
+      {
+        appId: (job as any).appId || 'demo',
+        appName: job.appName,
+        apiUrl,
+        collections,
+        authEnabled: blueprint?.auth?.enabled !== false,
+        navItems: job.plan.map(s => s.name),
+        navIcons: ['home', 'list', 'eye', 'plus', 'user'].slice(0, job.plan.length),
+      }
+    );
+
+    // Generate manifest.json for PWA
+    const manifest = JSON.stringify({
+      name: job.appName,
+      short_name: job.appName,
+      start_url: '/',
+      display: 'standalone',
+      background_color: '#050507',
+      theme_color: '#6366f1',
+    });
+
+    // Deploy to Vercel using their API
+    const slug = job.appName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const projectName = `af-${slug}-${Date.now().toString(36)}`;
+
+    const deployRes = await fetch('https://api.vercel.com/v13/deployments', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${VERCEL_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: projectName,
+        files: [
+          { file: 'index.html', data: Buffer.from(appHtml).toString('base64'), encoding: 'base64' },
+          { file: 'manifest.json', data: Buffer.from(manifest).toString('base64'), encoding: 'base64' },
+        ],
+        projectSettings: {
+          framework: null,
+        },
+      }),
+    });
+
+    const deployData = await deployRes.json() as any;
+
+    if (deployData.error) {
+      console.error('[Deploy]', deployData.error);
+      return res.status(500).json({ success: false, message: deployData.error.message || 'Deploy failed' });
+    }
+
+    const previewUrl = `https://${deployData.url}`;
+    console.log(`[AppForge] 🚀 Deployed: ${previewUrl}`);
+
+    // Store preview URL on job
+    (job as any).previewUrl = previewUrl;
+
+    res.json({
+      success: true,
+      url: previewUrl,
+      projectName,
+      deployId: deployData.id,
+    });
+  } catch (err: any) {
+    console.error('[Deploy Error]', err.message);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // ─── START ───────────────────────────────────────────────────────────────────
 const PORT = 3001;
 app.listen(PORT, '0.0.0.0', () => {

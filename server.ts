@@ -469,6 +469,81 @@ app.get('/api/job/:jobId', (req, res) => {
   });
 });
 
+// ─── TEMPLATE GALLERY ────────────────────────────────────────────────────────
+const galleryData = JSON.parse(readFileSync(join(import.meta.dirname || __dirname, 'templates/data/gallery.json'), 'utf-8'));
+
+app.get('/api/templates', (_req, res) => {
+  const templates = galleryData.templates.sort((a: any, b: any) => b.popularity - a.popularity);
+  res.json({ success: true, templates, total: templates.length });
+});
+
+app.get('/api/templates/:id', (req, res) => {
+  const template = galleryData.templates.find((t: any) => t.id === req.params.id);
+  if (!template) return res.status(404).json({ success: false, message: 'Template not found' });
+  res.json({ success: true, template });
+});
+
+// ─── CHAT-BASED EDITING ──────────────────────────────────────────────────────
+app.post('/api/edit', async (req, res) => {
+  try {
+    const { jobId, screenIndex, instruction, currentHtml } = req.body;
+    
+    if (!instruction) {
+      return res.status(400).json({ success: false, message: 'Missing instruction' });
+    }
+
+    // Get the job and screen to edit
+    const job = jobId ? jobs.get(jobId) : null;
+    const screenHtml = currentHtml || (job?.screens?.[screenIndex || 0]?.html) || '';
+    
+    if (!screenHtml) {
+      return res.status(400).json({ success: false, message: 'No screen HTML to edit. Provide currentHtml or valid jobId+screenIndex.' });
+    }
+
+    const editPrompt = `You are an expert mobile UI editor. The user wants to modify a mobile app screen.
+
+Current screen HTML (this is what the user sees):
+\`\`\`html
+${screenHtml.substring(0, 6000)}
+\`\`\`
+
+User instruction: "${instruction}"
+
+RULES:
+- Return the COMPLETE modified HTML (not a diff/patch)
+- Only change what the user asked for
+- Keep all existing structure, classes, and styles intact
+- If they ask to change colors, update the inline styles and CSS classes
+- If they ask to add elements, add them in logical positions
+- If they ask to remove elements, remove them cleanly
+- Maintain the dark theme aesthetic (bg: #050507, text: white)
+- Keep all data-af-* attributes and data bindings
+- Return ONLY the HTML, no explanation or markdown wrapping`;
+
+    const editedHtml = await aiChat(editPrompt, instruction, 8000);
+    
+    // Clean up response — extract HTML if wrapped
+    let cleanHtml = editedHtml;
+    if (cleanHtml.startsWith('```')) {
+      cleanHtml = cleanHtml.replace(/^```html?\n?/, '').replace(/\n?```$/, '');
+    }
+
+    // Update the job's screen if jobId provided
+    if (job && screenIndex !== undefined && job.screens[screenIndex]) {
+      job.screens[screenIndex].html = cleanHtml;
+    }
+
+    res.json({
+      success: true,
+      html: cleanHtml,
+      instruction,
+    });
+  } catch (err: any) {
+    console.error('[Edit Error]', err.message);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // ─── ADMIN PANEL ─────────────────────────────────────────────────────────────
 const adminPanelPath = join(import.meta.dirname || __dirname, 'runtime/admin-panel.html');
 

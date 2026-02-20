@@ -1,0 +1,204 @@
+{
+  "templates": [
+    {
+      "id": "habit-tracker",
+      "name": "Habit Tracker",
+      "description": "Track daily habits with streaks and progress charts",
+      "category": "productivity",
+      "prompt": "A habit tracking app with daily check-ins, streak counters, weekly progress charts, and motivational reminders",
+      "thumbnail": "🎯",
+      "tags": ["habits", "productivity", "health"],
+      "popularity": 95
+    },
+    {
+      "id": "expense-tracker",
+      "name": "Expense Tracker",
+      "description": "Track spending, budgets, and savings goals",
+      "category": "finance",
+      "prompt": "A personal finance app for tracking daily expenses, monthly budgets by category, savings goals with progress, and spending analytics with charts",
+      "thumbnail": "💰",
+      "tags": ["finance", "budget", "money"],
+      "popularity": 92
+    },
+    {
+      "id": "recipe-book",
+      "name": "Recipe Book",
+      "description": "Save and organize your favorite recipes",
+      "category": "food",
+      "prompt": "A recipe collection app with categories like breakfast/lunch/dinner, cooking time, difficulty level, ingredient lists, step-by-step instructions, and a meal planner",
+      "thumbnail": "🍳",
+      "tags": ["food", "cooking", "recipes"],
+      "popularity": 88
+    },
+    {
+      "id": "workout-planner",
+      "name": "Workout Planner",
+      "description": "Plan workouts, track sets/reps, and monitor progress",
+      "category": "fitness",
+      "prompt": "A fitness app with workout plans, exercise library with sets/reps/weight tracking, rest timers, body measurements log, and weekly workout summary",
+      "thumbnail": "💪",
+      "tags": ["fitness", "gym", "exercise"],
+      "popularity": 90
+    },
+    {
+      "id": "study-flashcards",
+      "name": "Study Flashcards",
+      "description": "Create flashcard decks and study with spaced repetition",
+      "category": "education",
+      "prompt": "A flashcard study app with custom deck creation, flip-to-reveal cards, spaced repetition scheduling, quiz mode with scoring, and study streak tracking",
+      "thumbnail": "📚",
+      "tags": ["education", "study", "flashcards"],
+      "popularity": 85
+    },
+    {
+      "id": "job-tracker",
+      "name": "Job Application Tracker",
+      "description": "Track job applications, interviews, and offers",
+      "category": "productivity",
+      "prompt": "A job hunting tracker with application status pipeline (Applied, Phone Screen, Interview, Offer, Rejected), company details, interview notes, salary comparison, and deadline reminders",
+      "thumbnail": "💼",
+      "tags": ["jobs", "career", "tracking"],
+      "popularity": 82
+    },
+    {
+      "id": "mood-journal",
+      "name": "Mood Journal",
+      "description": "Daily mood tracking with journaling and insights",
+      "category": "health",
+      "prompt": "A mental health journal app with daily mood ratings (emoji picker), journal entries, mood trends chart over time, gratitude prompts, and breathing exercises",
+      "thumbnail": "😊",
+      "tags": ["mental health", "journal", "mood"],
+      "popularity": 87
+    },
+    {
+      "id": "pet-care",
+      "name": "Pet Care Tracker",
+      "description": "Track pet health, feeding, walks, and vet visits",
+      "category": "lifestyle",
+      "prompt": "A pet care app for tracking feeding schedules, walk times and routes, vet appointments, vaccination records, medication reminders, and pet weight/growth charts",
+      "thumbnail": "🐾",
+      "tags": ["pets", "health", "tracking"],
+      "popularity": 80
+    },
+    {
+      "id": "plant-care",
+      "name": "Plant Care",
+      "description": "Never forget to water your plants again",
+      "category": "lifestyle",
+      "prompt": "A plant care app with a plant collection, watering schedule and reminders, sunlight requirements, growth photo log, and care tips per plant species",
+      "thumbnail": "🌱",
+      "tags": ["plants", "garden", "reminders"],
+      "popularity": 78
+    },
+    {
+      "id": "book-tracker",
+      "name": "Book Tracker",
+      "description": "Track your reading list, progress, and reviews",
+      "category": "education",
+      "prompt": "A reading tracker app with a bookshelf (reading, finished, want to read), page progress tracking, star ratings and reviews, reading stats (books/year, pages/month), and book recommendations",
+      "thumbnail": "📖",
+      "tags": ["books", "reading", "tracking"],
+      "popularity": 83
+    },
+    {
+      "id": "travel-planner",
+      "name": "Travel Planner",
+      "description": "Plan trips with itineraries, packing lists, and budgets",
+      "category": "travel",
+      "prompt": "A travel planning app with trip itineraries (day-by-day), packing checklists, budget tracker per trip, saved destinations with photos, flight and hotel details, and a trip countdown timer",
+      "thumbnail": "✈️",
+      "tags": ["travel", "planning", "trips"],
+      "popularity": 86
+    },
+    {
+      "id": "marketplace",
+      "name": "Mini Marketplace",
+      "description": "Buy and sell items locally",
+      "category": "ecommerce",
+      "prompt": "A local marketplace app with product listings with photos and prices, category browsing, search with filters, seller profiles with ratings, favorites/wishlist, and chat with seller",
+      "thumbnail": "🛍️",
+      "tags": ["marketplace", "shopping", "ecommerce"],
+      "popularity": 84
+    },
+    {
+      "id": "event-planner",
+      "name": "Event Planner",
+      "description": "Organize events with guest lists and checklists",
+      "category": "social",
+      "prompt": "An event planning app with event creation (date, venue, theme), guest list with RSVP tracking, task checklist, budget breakdown, vendor contacts, and countdown to event",
+      "thumbnail": "🎉",
+      "tags": ["events", "planning", "social"],
+      "popularity": 79
+    },
+    {
+      "id": "meditation",
+      "name": "Meditation & Mindfulness",
+      "description": "Guided meditation sessions and breathing exercises",
+      "category": "health",
+      "prompt": "A meditation app with guided session library (5-30 min), breathing exercise timer, daily meditation streak, sleep sounds, mood check-in before/after, and mindfulness stats",
+      "thumbnail": "🧘",
+      "tags": ["meditation", "mindfulness", "wellness"],
+      "popularity": 89
+    },
+    {
+      "id": "portfolio-showcase",
+      "name": "Portfolio Showcase",
+      "description": "Showcase your work with a beautiful mobile portfolio",
+      "category": "portfolio",
+      "prompt": "A professional portfolio app with project showcase gallery, about me section with skills and experience, client testimonials, contact form, and social media links",
+      "thumbnail": "🎨",
+      "tags": ["portfolio", "design", "creative"],
+      "popularity": 76
+    },
+    {
+      "id": "quiz-game",
+      "name": "Trivia Quiz Game",
+      "description": "Test your knowledge with fun trivia quizzes",
+      "category": "quiz",
+      "prompt": "A trivia quiz app with multiple categories (Science, History, Pop Culture, Sports), difficulty levels, timed questions, score leaderboard, daily challenge, and achievement badges",
+      "thumbnail": "🧠",
+      "tags": ["quiz", "trivia", "game"],
+      "popularity": 81
+    },
+    {
+      "id": "real-estate",
+      "name": "Property Finder",
+      "description": "Browse property listings with filters and favorites",
+      "category": "realestate",
+      "prompt": "A real estate browsing app with property listings (photos, price, sqft, beds/baths), search with filters (price range, type, location), favorites/saved list, property detail with map, and mortgage calculator",
+      "thumbnail": "🏠",
+      "tags": ["real estate", "property", "housing"],
+      "popularity": 77
+    },
+    {
+      "id": "music-playlist",
+      "name": "Playlist Manager",
+      "description": "Organize your music into smart playlists",
+      "category": "music",
+      "prompt": "A music playlist manager with playlist creation, song library browser, now playing screen with album art and controls, recently played history, and listening stats",
+      "thumbnail": "🎵",
+      "tags": ["music", "playlists", "listening"],
+      "popularity": 75
+    },
+    {
+      "id": "dating-app",
+      "name": "Match & Meet",
+      "description": "Find your perfect match with smart profiles",
+      "category": "dating",
+      "prompt": "A dating app with swipe-based discovery, profile cards with photos and bio, match list, chat with matches, interest-based compatibility score, and profile settings with preferences",
+      "thumbnail": "💝",
+      "tags": ["dating", "social", "matching"],
+      "popularity": 74
+    },
+    {
+      "id": "news-reader",
+      "name": "News Reader",
+      "description": "Stay informed with a clean, personalized news feed",
+      "category": "news",
+      "prompt": "A news reader app with personalized feed, category tabs (Tech, Business, Sports, Entertainment), article detail with reading time, bookmarks/save for later, and reading history with stats",
+      "thumbnail": "📰",
+      "tags": ["news", "reading", "media"],
+      "popularity": 73
+    }
+  ]
+}

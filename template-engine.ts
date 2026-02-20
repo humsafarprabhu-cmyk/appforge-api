@@ -218,6 +218,15 @@ export function assembleFullApp(
     // Trigger initial auth state
     if (AF.auth.user) AF.emit('auth:changed', AF.auth.user);` : '';
 
+  // Add AppForge branding for free tier
+  const brandingBanner = `
+  <div id="af-branding" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,sans-serif;">
+    <span style="color:white;font-size:12px;opacity:0.9;">Built with</span>
+    <a href="https://appforge.dev" target="_blank" style="color:white;font-size:13px;font-weight:600;text-decoration:none;">⚡ AppForge</a>
+    <span style="color:white;font-size:11px;opacity:0.6;margin-left:8px;">|</span>
+    <a href="https://appforge.dev/pricing" target="_blank" style="color:white;font-size:11px;opacity:0.7;text-decoration:none;">Remove branding →</a>
+  </div>`;
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -245,6 +254,7 @@ export function assembleFullApp(
   ${screensHtml}
   ${authScreensHtml}
 
+  ${brandingBanner}
   <script src="${apiUrl}/runtime/appforge-runtime.js"></script>
   <script>
     // AF.init triggers auto-binding of all data-af-* elements

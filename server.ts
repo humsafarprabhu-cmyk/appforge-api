@@ -683,6 +683,326 @@ app.get('/app/:jobId', (req, res) => {
   res.send(html);
 });
 
+// ─── TELEGRAM MINI APP EXPORT ────────────────────────────────────────────────
+app.post('/api/export/telegram-mini-app', (req, res) => {
+  try {
+    const { jobId, appName, botUsername } = req.body;
+    const job = jobId ? jobs.get(jobId) : null;
+    
+    if (!job || job.status !== 'complete') {
+      return res.status(400).json({ success: false, message: 'Job not found or not complete' });
+    }
+
+    const apiUrl = `${req.protocol}://${req.get('host')}`;
+    const blueprint = (job as any).blueprint;
+    const collections = blueprint?.dataModel?.collections || [];
+
+    // Generate the full app HTML with Telegram WebApp SDK injected
+    const appHtml = assembleFullApp(
+      job.screens.map((s, i) => ({
+        name: s.name, html: s.html,
+        blueprint: (job as any).screenBlueprints?.[i] || 'dashboard-a',
+      })),
+      {
+        appId: (job as any).appId || 'demo',
+        appName: job.appName,
+        apiUrl,
+        collections,
+        authEnabled: false, // TMA handles auth via Telegram
+        navItems: job.plan.map(s => s.name),
+        navIcons: ['home', 'list', 'eye', 'plus', 'user'].slice(0, job.plan.length),
+      }
+    );
+
+    // Inject Telegram WebApp SDK
+    const tmaHtml = appHtml.replace('</head>', `
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    // Telegram Mini App integration
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      // Match Telegram theme
+      document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#050507');
+      document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
+      // Back button support
+      tg.BackButton.onClick(() => { window.history.back(); });
+      // Get user info
+      window.__TG_USER__ = tg.initDataUnsafe?.user || null;
+    }
+  </script>
+</head>`);
+
+    // Generate bot setup instructions
+    const instructions = `# Telegram Mini App Setup for ${job.appName}
+
+## Steps:
+1. Open @BotFather on Telegram
+2. Send /newapp (or /editapp if bot exists)
+3. Select your bot: @${botUsername || 'your_bot'}
+4. Upload the app URL (host index.html anywhere)
+5. Set the app short name
+
+## Files:
+- index.html — Your complete Mini App (single file)
+
+## Hosting options (free):
+- GitHub Pages: push index.html to a repo, enable Pages
+- Cloudflare Pages: drag & drop upload
+- Vercel: deploy as static site
+- Netlify: drag & drop
+
+## Testing:
+- Use @BotFather /myapps to get the direct link
+- Or add a Menu Button to your bot via @BotFather /setmenubutton
+`;
+
+    res.json({
+      success: true,
+      files: {
+        'index.html': tmaHtml,
+        'README.md': instructions,
+      },
+      appName: job.appName,
+      totalFiles: 2,
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// ─── TWA (Trusted Web Activity) APK EXPORT ───────────────────────────────────
+app.post('/api/export/twa', (req, res) => {
+  try {
+    const { jobId, appName, packageName, hostUrl } = req.body;
+    const job = jobId ? jobs.get(jobId) : null;
+    const name = appName || job?.appName || 'MyApp';
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const pkg = packageName || `com.appforge.${slug}`;
+    const url = hostUrl || `https://${slug}.appforge.dev`;
+
+    // Generate build.gradle for TWA
+    const buildGradle = `plugins {
+    // TWA — use PWABuilder.com or Bubblewrap CLI
+}
+
+android {
+    namespace '${pkg}'
+    compileSdk 34
+    defaultConfig {
+        applicationId "${pkg}"
+        minSdk 19
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+twa {
+    applicationId = "${pkg}"
+    hostName = "${new URL(url).hostname}"
+    launchUrl = "/"
+    name = "${name}"
+    shortName = "${name}"
+    themeColor = "#050507"
+    navigationColor = "#050507"
+    backgroundColor = "#050507"
+    enableNotifications = false
+    splashScreenFadeOutDuration = 300
+    iconUrl = "./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    signingKey {
+        storeFile = "./pwa-keystore.jks"
+        storePassword = "appforge123"
+        keyAlias = "pwa"
+        keyPassword = "appforge123"
+    }
+    fallbackType = "customtabs"
+    enableSiteSettingsShortcut = true
+}`;
+
+    const instructions = `# TWA (Trusted Web Activity) APK — ${name}
+
+## What is TWA?
+A lightweight APK that wraps your web app. ~2MB, loads from URL, feels native.
+
+## Prerequisites:
+1. Host your app at a public URL (e.g., GitHub Pages)
+2. Add a .well-known/assetlinks.json for verification
+
+## Quick build with Bubblewrap:
+\`\`\`bash
+# Option 1: Use PWABuilder.com (recommended, no install needed)
+bubblewrap init --manifest="${url}/manifest.json"
+bubblewrap build
+\`\`\`
+
+## Or use PWABuilder.com:
+1. Go to https://pwabuilder.com
+2. Enter your hosted PWA URL
+3. Click "Package for stores" → Android
+4. Download the APK
+
+## Files included:
+- manifest.json — PWA manifest
+- assetlinks.json — Digital Asset Links for TWA verification
+- build.gradle — TWA build config (if using Gradle)
+`;
+
+    const manifest = JSON.stringify({
+      name,
+      short_name: name,
+      start_url: '/',
+      display: 'standalone',
+      background_color: '#050507',
+      theme_color: '#6366f1',
+      icons: [
+        { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      ],
+    }, null, 2);
+
+    const assetlinks = JSON.stringify([{
+      relation: ['delegate_permission/common.handle_all_urls'],
+      target: {
+        namespace: 'android_app',
+        package_name: pkg,
+        sha256_cert_fingerprints: ['__REPLACE_WITH_YOUR_SHA256__'],
+      },
+    }], null, 2);
+
+    res.json({
+      success: true,
+      files: {
+        'manifest.json': manifest,
+        '.well-known/assetlinks.json': assetlinks,
+        'build.gradle': buildGradle,
+        'README.md': instructions,
+      },
+      appName: name,
+      packageName: pkg,
+      totalFiles: 4,
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// ─── CAPACITOR APK EXPORT ────────────────────────────────────────────────────
+app.post('/api/export/capacitor', (req, res) => {
+  try {
+    const { jobId, appName, packageName } = req.body;
+    const job = jobId ? jobs.get(jobId) : null;
+
+    if (!job || job.status !== 'complete') {
+      return res.status(400).json({ success: false, message: 'Job not found or not complete' });
+    }
+
+    const name = appName || job.appName || 'MyApp';
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const pkg = packageName || `com.appforge.${slug}`;
+
+    const apiUrl = `${req.protocol}://${req.get('host')}`;
+    const blueprint = (job as any).blueprint;
+    const collections = blueprint?.dataModel?.collections || [];
+
+    // Get the full app HTML
+    const appHtml = assembleFullApp(
+      job.screens.map((s, i) => ({
+        name: s.name, html: s.html,
+        blueprint: (job as any).screenBlueprints?.[i] || 'dashboard-a',
+      })),
+      {
+        appId: (job as any).appId || 'demo',
+        appName: name,
+        apiUrl,
+        collections,
+        authEnabled: blueprint?.auth?.enabled !== false,
+        navItems: job.plan.map(s => s.name),
+        navIcons: ['home', 'list', 'eye', 'plus', 'user'].slice(0, job.plan.length),
+      }
+    );
+
+    const packageJson = JSON.stringify({
+      name: slug,
+      version: '1.0.0',
+      private: true,
+      scripts: {
+        build: 'echo "Static app — no build step"',
+        'cap:init': `npx cap init "${name}" ${pkg} --web-dir www`,
+        'cap:add': 'npx cap add android',
+        'cap:sync': 'npx cap sync',
+        'cap:open': 'npx cap open android',
+        'apk': 'npm run cap:sync && cd android && ./gradlew assembleDebug && echo "APK at android/app/build/outputs/apk/debug/app-debug.apk"',
+      },
+      dependencies: {
+        '@capacitor/core': '^6.0.0',
+        '@capacitor/android': '^6.0.0',
+      },
+    }, null, 2);
+
+    const capacitorConfig = JSON.stringify({
+      appId: pkg,
+      appName: name,
+      webDir: 'www',
+      server: { androidScheme: 'https' },
+      plugins: {
+        SplashScreen: {
+          launchShowDuration: 2000,
+          backgroundColor: '#050507',
+          showSpinner: false,
+        },
+      },
+    }, null, 2);
+
+    const instructions = `# Capacitor APK Build — ${name}
+
+## Quick Start (5 minutes):
+\`\`\`bash
+# 1. Install dependencies
+npm install
+
+# 2. Initialize Capacitor
+npm run cap:init
+
+# 3. Add Android platform
+npm run cap:add
+
+# 4. Build APK
+npm run apk
+\`\`\`
+
+## Requirements:
+- Node.js 18+
+- Android Studio (for SDK)
+- Java 17
+
+## Files:
+- www/index.html — Your complete app
+- capacitor.config.json — Capacitor config
+- package.json — Dependencies and scripts
+
+## APK location after build:
+android/app/build/outputs/apk/debug/app-debug.apk
+`;
+
+    res.json({
+      success: true,
+      files: {
+        'www/index.html': appHtml,
+        'capacitor.config.json': capacitorConfig,
+        'package.json': packageJson,
+        'README.md': instructions,
+      },
+      appName: name,
+      packageName: pkg,
+      totalFiles: 4,
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // ─── REACT NATIVE EXPORT ─────────────────────────────────────────────────────
 import { assembleExpoProject, getProjectManifest } from './rn-assembler.ts';
 

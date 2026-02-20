@@ -1,6 +1,6 @@
 import { config } from '../config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import AsyncStorage from 'react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Initialize based on mode
 let supabase: SupabaseClient | null = null;

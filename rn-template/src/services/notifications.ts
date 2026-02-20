@@ -71,7 +71,7 @@ class NotificationsService {
 
   // ─── SCHEDULE REMINDER ────────────────────────────────────────
   async scheduleReminder(title: string, body: string, date: Date): Promise<string> {
-    return this.scheduleLocal(title, body, { date });
+    return this.scheduleLocal(title, body, { type: Notifications.SchedulableTriggerInputTypes.DATE, date });
   }
 
   // ─── CANCEL ALL ───────────────────────────────────────────────

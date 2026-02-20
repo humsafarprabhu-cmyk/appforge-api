@@ -54,6 +54,55 @@ function readTemplateFiles(dir: string, base: string = ''): Record<string, strin
 }
 
 /**
+ * Fill all {{placeholder}} values in screen templates with context-appropriate defaults.
+ */
+function fillScreenPlaceholders(content: string, screenName: string, appName: string, _screenType: string): string {
+  const defaults: Record<string, string> = {
+    greetingSubtext: 'Welcome back', userName: 'User', userInitials: 'U',
+    ringPercent: '72', ringLabel: 'Progress',
+    metric1Label: 'Total', metric1Value: '24', metric1Target: '30',
+    metric2Label: 'Active', metric2Value: '18', metric2Target: '20',
+    metric3Label: 'Done', metric3Value: '12', metric3Target: '15',
+    stat1Value: '156', stat1Label: 'Items', stat2Value: '89%', stat2Label: 'Rate', stat3Value: '4.8', stat3Label: 'Score',
+    chartTitle: 'Weekly Activity',
+    bar1: '45', bar2: '62', bar3: '38', bar4: '71', bar5: '85', bar6: '53', bar7: '40',
+    listTitle: 'Recent',
+    item1Title: screenName, item1Subtitle: 'First item', item1Badge: 'New', item1Meta: 'Today',
+    item2Title: 'Second', item2Subtitle: 'Second item', item2Badge: 'Active', item2Meta: 'Yesterday',
+    item3Title: 'Third', item3Subtitle: 'Third item', item3Badge: 'Done',
+    item4Title: 'Fourth', item4Subtitle: 'Fourth item', item4Badge: 'Pending', item4Meta: '2d ago',
+    detailTitle: screenName, detailSubtitle: `Part of ${appName}`, detailBadge: 'Active',
+    detailDescTitle: 'Description', detailDescription: `Details for this item.`,
+    detailCTA: 'Get Started',
+    detailStat1Label: 'Views', detailStat1Value: '1.2K',
+    detailStat2Label: 'Likes', detailStat2Value: '342',
+    detailStat3Label: 'Shares', detailStat3Value: '89',
+    pageTitle: `New ${screenName.replace(/^New\s*/i, '')}`,
+    formSubtitle: 'Fill in the details below',
+    field1Label: 'Title', field1Placeholder: 'Enter title...',
+    field2Label: 'Description', field2Placeholder: 'Enter description...',
+    field3Label: 'Category', field3Placeholder: 'Select category...',
+    field4Label: 'Notes', submitLabel: 'Save', collection: 'items',
+    tag1: 'Important', tag2: 'Personal', tag3: 'Work', tag4: 'Ideas', tag5: 'Other',
+    toggleLabel: 'Enable notifications', toggleDescription: 'Get updates about this item',
+    searchPlaceholder: `Search ${appName.toLowerCase()}...`,
+    filter1: 'All', filter2: 'Active', filter3: 'Done', filter4: 'Archived',
+    userEmail: 'user@example.com',
+    profileStat1Label: 'Items', profileStat1Value: '47',
+    profileStat2Label: 'Streak', profileStat2Value: '12',
+    profileStat3Label: 'Points', profileStat3Value: '890',
+    setting1: 'Notifications', setting2: 'Dark Mode', setting3: 'Language', setting4: 'Privacy',
+  };
+  let result = content;
+  for (const [key, value] of Object.entries(defaults)) {
+    result = result.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value);
+  }
+  // Remaining placeholders → 0 (safe fallback for numeric contexts)
+  result = result.replace(/\{\{[a-zA-Z0-9_]+\}\}/g, '0');
+  return result;
+}
+
+/**
  * Replace global theme placeholders in all files
  */
 function applyTheme(content: string, meta: AppMeta): string {
@@ -195,40 +244,37 @@ function generateConfig(meta: AppMeta): string {
   return `export const config = {
   appName: '${meta.appName}',
   appSlug: '${meta.appSlug}',
+  appId: '',  // Set after provisioning
   description: '${meta.description.replace(/'/g, "\\'")}',
-  
+
   // Database mode: 'managed' (AppForge backend) or 'self-managed' (your own Supabase)
-  dbMode: '${meta.dbMode}' as const,
-  
-  // Managed mode config (AppForge handles everything)
-  managed: {
-    apiUrl: 'https://api.appforge.dev',
-    appId: '{{APP_ID}}',  // Set after provisioning
-  },
-  
-  // Self-managed mode (bring your own Supabase)
-  supabase: {
-    url: '{{SUPABASE_URL}}',
-    anonKey: '{{SUPABASE_ANON_KEY}}',
-  },
-  
+  mode: '${meta.dbMode}' as 'managed' | 'self-managed',
+
+  // Managed mode (AppForge handles everything)
+  appforgeApiUrl: 'https://api.appforge.dev',
+
+  // Self-managed mode: Supabase
+  supabaseUrl: '',
+  supabaseAnonKey: '',
+
+  // Monetization
+  admobAppId: '',
+  admobBannerId: '',
+  admobInterstitialId: '',
+  admobRewardedId: '',
+
+  // Payments
+  stripePublishableKey: '',
+  razorpayKeyId: '',
+
+  // Features
   features: {
     auth: ${meta.features.auth},
     database: ${meta.features.database},
     ads: ${meta.features.ads},
     payments: ${meta.features.payments},
     pushNotifications: ${meta.features.pushNotifications},
-  },
-  
-  ads: {
-    bannerId: '{{ADMOB_BANNER_ID}}',
-    interstitialId: '{{ADMOB_INTERSTITIAL_ID}}',
-    rewardedId: '{{ADMOB_REWARDED_ID}}',
-  },
-  
-  payments: {
-    stripePublishableKey: '{{STRIPE_PK}}',
-    razorpayKeyId: '{{RAZORPAY_KEY}}',
+    analytics: false,
   },
 };
 `;
@@ -307,6 +353,7 @@ export function assembleExpoProject(meta: AppMeta): Record<string, string> {
         .replace(new RegExp(`function ${screenType}Screen`, 'g'), `function ${componentName}Screen`);
       
       customized = applyTheme(customized, meta);
+      customized = fillScreenPlaceholders(customized, screen.name, meta.appName, screenType);
       files[`src/screens/${componentName}Screen.tsx`] = customized;
     }
     

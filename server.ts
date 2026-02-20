@@ -280,8 +280,9 @@ async function generateInBackground(job: Job, prompt: string, appId: string, app
       }
     }
 
-    // STEP 4: Provision backend
-    if ((job as any).blueprint && appId && appId !== 'new-app') {
+    // STEP 4: Provision backend (skip for try-mode / non-UUID appIds)
+    const isValidUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(appId);
+    if ((job as any).blueprint && appId && isValidUUID) {
       try {
         await provisionApp(appId, (job as any).blueprint);
       } catch (provErr: any) {

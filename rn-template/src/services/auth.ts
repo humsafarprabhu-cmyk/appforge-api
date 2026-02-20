@@ -1,6 +1,6 @@
 import { config } from '../config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import AsyncStorage from 'react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 
 let supabase: SupabaseClient | null = null;
